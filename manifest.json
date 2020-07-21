@@ -69,7 +69,8 @@
 "odata2webservices",
 "odata2webservicesfeaturetests",
 "kymaintegrationbackoffice",
-"yb2bacceleratorstorefront"
+"yb2bacceleratorstorefront",
+"b2bCustom"
    ],
     "storefrontAddons": [
         {

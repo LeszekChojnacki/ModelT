@@ -18,7 +18,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
 
 
-public class DefaultPrincipalGroupMembersDao implements PrincipalGroupMembersDao
+public class ExtDefaultPrincipalGroupMembersDao extends DefaultPrincipalGroupMembersDao
 {
 	protected static final Logger LOG = Logger.getLogger(DefaultPrincipalGroupMembersDao.class);
 

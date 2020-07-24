@@ -82,5 +82,26 @@
         <property name="mediaService" ref="mediaService"/>
         <property name="flexibleSearchService" ref="flexibleSearchService"/>
     </bean>
+    
+    <alias alias="b2bUnitService" name="ExtdefaultB2BUnitService"/>
+    <bean id="ExtdefaultB2BUnitService"
+	      class="de.hybris.platform.b2b.services.impl.ExtDefaultB2BUnitService">
+		<property name="b2bUnitDao" ref="b2bUnitDao"/>
+		<property name="modelService" ref="modelService"/>
+		<property name="sessionService" ref="sessionService"/>
+		<property name="userService" ref="userService"/>
+		<property name="principalGroupMembersDao" ref="principalGroupMembersDao"/>
+		<property name="processDefinitionFactory" ref="processDefinitionFactory"/>
+		<property name="configurationService" ref="configurationService"/>
+		<property name="searchRestrictionService" ref="searchRestrictionService"/>
+		<property name="typeService" ref="typeService"/>
+	</bean> 
+	
+	<alias alias="principalGroupMembersDao" name="ExtdefaultPrincipalGroupMembersDao"/>
+	<bean id="ExtdefaultPrincipalGroupMembersDao"
+	      class="de.hybris.platform.b2b.dao.impl.ExtdefaultPrincipalGroupMembersDao">
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+		<property name="modelService" ref="modelService"/>
+	</bean>
 			
 </beans>

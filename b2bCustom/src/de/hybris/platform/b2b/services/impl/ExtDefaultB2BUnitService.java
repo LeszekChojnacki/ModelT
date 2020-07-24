@@ -56,11 +56,11 @@ import org.springframework.util.Assert;
 
 
 /**
- * Default implementation of the {@link B2BUnitService}
+ * Ext Default implementation of the {@link B2BUnitService}
  *
  * @spring.bean b2bUnitService
  */
-public class DefaultB2BUnitService implements B2BUnitService<B2BUnitModel, B2BCustomerModel>
+public class ExtDefaultB2BUnitService extends DefaultB2BUnitService
 {
 	private static final Logger LOG = Logger.getLogger(DefaultB2BUnitService.class);
 

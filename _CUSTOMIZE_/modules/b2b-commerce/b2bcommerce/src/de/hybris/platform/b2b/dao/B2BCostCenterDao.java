@@ -27,6 +27,14 @@ public interface B2BCostCenterDao extends GenericDao<B2BCostCenterModel>
 	List<B2BCostCenterModel> findActiveCostCentersByBranchAndCurrency(final Set<B2BUnitModel> branch, final CurrencyModel currency);
 
 	/**
+	 * Returns list of currencies for all cost centers of given branch.
+	 * 
+	 * @param branch
+	 * @return List {@link CurrencyModel}
+	 */
+	List<CurrencyModel> findCurrenciesForAllCostCentersOfUnit(final Set<B2BUnitModel> branch);
+
+	/**
 	 * Finds B2BCostCenter by code, If none is found null is returned.
 	 * 
 	 * @param code

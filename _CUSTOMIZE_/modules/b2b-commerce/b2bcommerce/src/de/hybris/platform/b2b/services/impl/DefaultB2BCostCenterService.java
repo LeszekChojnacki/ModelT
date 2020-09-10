@@ -25,6 +25,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -166,19 +167,8 @@ public class DefaultB2BCostCenterService implements B2BCostCenterService<B2BCost
 	{
 
 		final Set<B2BUnitModel> branch = getB2bUnitService().getBranch(unit);
-		final Set<CurrencyModel> currencies = new HashSet<CurrencyModel>();
-		final List<B2BCostCenterModel> costCenters = new ArrayList<B2BCostCenterModel>();
-
-		for (final B2BUnitModel b2bUnitModel : branch)
-		{
-			costCenters.addAll(b2bUnitModel.getCostCenters());
-		}
-		for (final B2BCostCenterModel costCenter : costCenters)
-		{
-			currencies.add(costCenter.getCurrency());
-		}
-
-		return Collections.unmodifiableSet(currencies);
+		
+		return Collections.unmodifiableSet((LinkedHashSet<CurrencyModel>) b2bCostCenterDao.findCurrenciesForAllCostCentersOfUnit(branch));
 	}
 
 	@Override

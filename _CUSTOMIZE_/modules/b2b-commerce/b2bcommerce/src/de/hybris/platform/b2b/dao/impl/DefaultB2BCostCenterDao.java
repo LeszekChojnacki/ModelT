@@ -68,4 +68,29 @@ public class DefaultB2BCostCenterDao extends DefaultGenericDao<B2BCostCenterMode
 		return result.getResult();
 
 	}
+
+	/**
+	 * Returns list of distinct {@link CurrencyModel} for a {@link B2BCostCenterModel} associated with a set of B2BUnits.
+	 * 
+	 * @param branch
+	 * @return List of {@link CurrencyModel}
+	 */
+	public List<CurrencyModel> findCurrenciesForAllCostCentersOfUnit(final Set<B2BUnitModel> branch)
+	{
+		final StringBuilder queryBuilder = new StringBuilder();
+		queryBuilder.append(" SELECT DISTINCT {c:currency} ");
+		queryBuilder.append(" FROM {B2BCostCenter as c}");
+		queryBuilder.append(" WHERE {c:active} = 1 ");
+		queryBuilder.append(" AND {c:unit} in ( ?branch ) ");
+		queryBuilder.append(" ORDER BY {c:currency} ASC");
+
+		final FlexibleSearchQuery query = new FlexibleSearchQuery(queryBuilder.toString());
+		query.setCount(-1);
+		query.setDisableSearchRestrictions(true);
+		query.setStart(0);
+		query.getQueryParameters().put("branch", branch);
+
+		final SearchResult<CurrencyModel> result = getFlexibleSearchService().search(query);
+		return result.getResult();
+	}
 }

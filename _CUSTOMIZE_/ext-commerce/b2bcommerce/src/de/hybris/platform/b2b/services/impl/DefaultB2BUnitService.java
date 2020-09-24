@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2b.services.impl;
 
@@ -77,7 +84,7 @@ public class DefaultB2BUnitService implements B2BUnitService<B2BUnitModel, B2BCu
 	/**
 	 * @deprecated Since 6.0. Use {@link #getBranch(B2BUnitModel)} instead
 	 */
-	@Deprecated(since = "6.0", forRemoval = true)
+	@Deprecated
 	@Override
 	public Set<B2BUnitModel> getAllUnitsOfOrganization(final B2BUnitModel unit)
 	{
@@ -182,7 +189,7 @@ public class DefaultB2BUnitService implements B2BUnitService<B2BUnitModel, B2BCu
 	{
 		return new HashSet<B2BUnitModel>(getPrincipalGroupMembersDao().findHierarchyMembersByType((Set) units, B2BUnitModel.class));
 	}
-	
+
 	@Override
 	public Set<B2BUnitModel> getB2BUnits(final B2BUnitModel unit)
 	{
@@ -314,7 +321,7 @@ public class DefaultB2BUnitService implements B2BUnitService<B2BUnitModel, B2BCu
 	/**
 	 * @deprecated Since 4.4. Use {@link #getUnitForUid(String)} instead
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	@Override
 	public B2BUnitModel findUnitByUid(final String uid)
 	{
@@ -332,7 +339,7 @@ public class DefaultB2BUnitService implements B2BUnitService<B2BUnitModel, B2BCu
 		catch (final UnknownIdentifierException | ClassMismatchException e)
 		{
 			unit = null;
-			LOG.error("Failed to get unit: " + uid + ". Cause: " + e.getMessage());
+			LOG.error("Failed to get unit: " + uid, e);
 		}
 		return unit;
 	}
@@ -359,8 +366,8 @@ public class DefaultB2BUnitService implements B2BUnitService<B2BUnitModel, B2BCu
 	@Override
 	public void addMember(final B2BUnitModel group, final PrincipalModel member)
 	{
-		final Set<PrincipalGroupModel> groups = new HashSet<PrincipalGroupModel>(
-				(member.getGroups() != null ? member.getGroups() : Collections.emptySet()));
+		final Set<PrincipalGroupModel> groups = new HashSet<PrincipalGroupModel>((member.getGroups() != null ? member.getGroups()
+				: Collections.emptySet()));
 		// for units only one parent is allowed however customers can belong to multiple units
 		if (member instanceof B2BUnitModel)
 		{
@@ -375,8 +382,8 @@ public class DefaultB2BUnitService implements B2BUnitService<B2BUnitModel, B2BCu
 	{
 		Assert.notNull(parentB2BUnit, "parent unit can't be null");
 		Assert.notNull(member, "the member parameter can't be null");
-		final Set<PrincipalGroupModel> groups = new HashSet<PrincipalGroupModel>(
-				(member.getGroups() != null ? member.getGroups() : Collections.emptySet()));
+		final Set<PrincipalGroupModel> groups = new HashSet<PrincipalGroupModel>((member.getGroups() != null ? member.getGroups()
+				: Collections.emptySet()));
 		// if the member of the group is a B2BCustomer update his defaultB2BUnit attribute.
 		if (member instanceof B2BCustomerModel)
 		{
@@ -396,7 +403,7 @@ public class DefaultB2BUnitService implements B2BUnitService<B2BUnitModel, B2BCu
 	 * @deprecated Since 6.0. Use
 	 *             {@link #getUsersOfUserGroup(de.hybris.platform.b2b.model.B2BUnitModel, String, boolean)}
 	 */
-	@Deprecated(since = "6.0", forRemoval = true)
+	@Deprecated
 	@Override
 	public Collection<B2BCustomerModel> getUsersOfUserGroup(final B2BUnitModel unit, final String userGroupId)
 	{
@@ -417,8 +424,8 @@ public class DefaultB2BUnitService implements B2BUnitService<B2BUnitModel, B2BCu
 		else if (recursive)
 		{
 
-			return (this.getParent(unit) == null ? Collections.<B2BCustomerModel> emptyList()
-					: getUsersOfUserGroup(this.getParent(unit), userGroupId, recursive));
+			return (this.getParent(unit) == null ? Collections.<B2BCustomerModel> emptyList() : getUsersOfUserGroup(
+					this.getParent(unit), userGroupId, recursive));
 		}
 		else
 		{
@@ -446,9 +453,8 @@ public class DefaultB2BUnitService implements B2BUnitService<B2BUnitModel, B2BCu
 					 * different UPGs assigned see https://jira.hybris.com/browse/BTOB-488 get the upg assigned to the parent
 					 * unit and set it in the context if none is assigned default to 'B2B_DEFAULT_PRICE_GROUP'
 					 */
-					final EnumerationValueModel userPriceGroup = (unitOfCustomer.getUserPriceGroup() != null
-							? getTypeService().getEnumerationValue(unitOfCustomer.getUserPriceGroup())
-							: lookupPriceGroupFromClosestParent(unitOfCustomer));
+					final EnumerationValueModel userPriceGroup = (unitOfCustomer.getUserPriceGroup() != null ? getTypeService()
+							.getEnumerationValue(unitOfCustomer.getUserPriceGroup()) : lookupPriceGroupFromClosestParent(unitOfCustomer));
 					return new Object[]
 					{ getRootUnit(unitOfCustomer), getBranch(unitOfCustomer), unitOfCustomer, userPriceGroup };
 				}
@@ -476,24 +482,18 @@ public class DefaultB2BUnitService implements B2BUnitService<B2BUnitModel, B2BCu
 	/**
 	 * @deprecated Since 4.4. Use {@link #getApprovalProcessCodeForUnit(B2BUnitModel)} instead
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	@Override
 	public String findApprovalProcessCodeForUnit(final B2BUnitModel unit)
 	{
 		return getApprovalProcessCodeForUnit(unit);
 	}
 
-	/**
-	 * @deprecated since 1905. Please use
-	 *             {@link de.hybris.platform.b2b.process.approval.services.impl.DefaultB2BApprovalProcessService.getApprovalProcessCodeForUnit(B2BUnitModel)}
-	 *             instead.
-	 */
-	@Deprecated(since = "1905", forRemoval = true)
 	@Override
 	public String getApprovalProcessCodeForUnit(final B2BUnitModel unit)
 	{
 		throw new NotImplementedException(
-				"Not implemented. Use de.hybris.platform.b2b.process.approval.services.impl.DefaultB2BApprovalProcessService.getApprovalProcessCodeForUnit(B2BUnitModel).");
+				"Not implemented. Use de.hybris.platform.b2b.services.impl.B2BUnitServiceProxy.getApprovalProcessCodeForUnit(B2BUnitModel) of b2bapprovalprocess extenstion.");
 	}
 
 	@Required
@@ -506,7 +506,7 @@ public class DefaultB2BUnitService implements B2BUnitService<B2BUnitModel, B2BCu
 	 * @deprecated Since 6.0. Use {@link #getAllProcessDefinitionsNames()}
 	 */
 	@Override
-	@Deprecated(since = "6.0", forRemoval = true)
+	@Deprecated
 	public List<String> getAllApprovalProcesses()
 	{
 		return new ArrayList<String>(this.getAllProcessDefinitionsNames());
@@ -521,7 +521,7 @@ public class DefaultB2BUnitService implements B2BUnitService<B2BUnitModel, B2BCu
 	/**
 	 * @deprecated Since 4.4. Use {@link #getAccountManagerForUnit(B2BUnitModel)} instead
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	@Override
 	public EmployeeModel findAccountManagerForUnit(final B2BUnitModel unit)
 	{
@@ -548,7 +548,7 @@ public class DefaultB2BUnitService implements B2BUnitService<B2BUnitModel, B2BCu
 	/**
 	 * @deprecated Since 4.4. Use {@link #getUnitWithCreditLimit(B2BUnitModel)} instead
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	@Override
 	public B2BUnitModel findUnitWithCreditLimit(final B2BUnitModel unit, final CurrencyModel currency)
 	{

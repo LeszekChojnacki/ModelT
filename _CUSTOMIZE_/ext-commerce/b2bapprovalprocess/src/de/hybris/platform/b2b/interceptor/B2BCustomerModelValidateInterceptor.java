@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2b.interceptor;
 
@@ -15,10 +22,12 @@ import de.hybris.platform.servicelayer.interceptor.InterceptorException;
 import de.hybris.platform.servicelayer.interceptor.ValidateInterceptor;
 import de.hybris.platform.servicelayer.user.UserService;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.PredicateUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
 
@@ -44,11 +53,17 @@ public class B2BCustomerModelValidateInterceptor implements ValidateInterceptor
 			final B2BCustomerModel customer = (B2BCustomerModel) model;
 			final B2BUnitModel parentUnit = b2bUnitService.getParent(customer);
 
+			// A b2bUnit without a parent is only allowed to be created by a user belonging to 'admingroup',
+			// check this on newly created models.
 			if (null == parentUnit)
 			{
 				throw new InterceptorException(getL10NService().getLocalizedString("error.b2bcustomer.b2bunit.missing"));
 			}
 
+			final Set<PrincipalGroupModel> groups = new HashSet<PrincipalGroupModel>(
+					(customer.getGroups() != null ? customer.getGroups() : Collections.emptySet()));
+
+			CollectionUtils.filter(groups, PredicateUtils.instanceofPredicate(B2BUnitModel.class));
 			if (customer.getActive().booleanValue() && !parentUnit.getActive().booleanValue())
 			{
 				throw new InterceptorException(getL10NService().getLocalizedString("error.b2bcustomer.enable.b2bunit.disabled"));

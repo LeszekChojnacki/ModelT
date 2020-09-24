@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2b.services;
 
@@ -38,7 +45,7 @@ public interface B2BCostCenterService<T, U extends UserModel>
 	 *
 	 * @deprecated As of hybris 4.4, replaced by {@link #getCostCentersForUnitBranch(UserModel, CurrencyModel)}
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	List<T> findCostCentersForUnitBranch(final U customer, final CurrencyModel currency);
 
 	/**
@@ -63,7 +70,7 @@ public interface B2BCostCenterService<T, U extends UserModel>
 	 *
 	 * @deprecated As of hybris 4.4, replaced by {@link #getCostCentersForUnitBranch(B2BUnitModel, CurrencyModel)}
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	List<T> findCostCentersForUnitBranch(final B2BUnitModel unit, final CurrencyModel currency);
 
 	/**
@@ -86,7 +93,7 @@ public interface B2BCostCenterService<T, U extends UserModel>
 	 *
 	 * @deprecated As of hybris 4.4, replaced by {@link #getCostCenterForCode(String)}
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	T findByCode(final String code);
 
 	/**
@@ -108,7 +115,7 @@ public interface B2BCostCenterService<T, U extends UserModel>
 	 *
 	 * @deprecated As of hybris 4.4, replaced by {@link #getAvailableCurrencies(B2BUnitModel)}
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	Set<CurrencyModel> findAvailableCurrencies(final B2BUnitModel unit);
 
 	/**
@@ -129,7 +136,7 @@ public interface B2BCostCenterService<T, U extends UserModel>
 	 *
 	 * @deprecated As of hybris 4.4, replaced by {@link #getAvailableCurrencies(UserModel)}
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	Set<CurrencyModel> findAvailableCurrencies(UserModel user);
 
 	/**
@@ -143,15 +150,14 @@ public interface B2BCostCenterService<T, U extends UserModel>
 
 
 	/**
-	 * @deprecated Since 4.4. Use
-	 *             {@link B2BBudgetService#getCurrentBudgets(de.hybris.platform.b2b.model.B2BCostCenterModel)} Gets the
-	 *             current budgets that are active based on a cost center for the session currency
+	 * @deprecated Since 4.4. Use {@link B2BBudgetService#getCurrentBudgets(de.hybris.platform.b2b.model.B2BCostCenterModel)} Gets
+	 *             the current budgets that are active based on a cost center for the session currency
 	 *
 	 * @param costCenter
 	 *           the cost center
 	 * @return the current budgets
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	Collection<B2BBudgetModel> getCurrentBudgets(final T costCenter);
 
 	/**
@@ -178,18 +184,18 @@ public interface B2BCostCenterService<T, U extends UserModel>
 	 *
 	 * @deprecated As of hybris 4.4
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	List<T> findCostCenters(final B2BUnitModel unit, final CurrencyModel currency);
 
 
 	/**
-	 * @deprecated Since 4.4. Use {@link B2BCostCenterService#getCostCenterForCode(String)} Returns B2BCostCenterMode of
-	 *             specified code. Returns null if none is found.
+	 * @deprecated Since 4.4. Use {@link B2BCostCenterService#getCostCenterForCode(String)} Returns B2BCostCenterMode of specified
+	 *             code. Returns null if none is found.
 	 *
 	 * @param code
 	 * @return B2BCostCenterModel
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	B2BCostCenterModel getB2BCostCenterForCode(final String code);
 
 	/**
@@ -200,14 +206,14 @@ public interface B2BCostCenterService<T, U extends UserModel>
 	 * @return the B2BBudget model
 	 * @deprecated Since 6.0. Use {@link de.hybris.platform.b2b.services.B2BBudgetService#getB2BBudgetForCode(String)}
 	 */
-	@Deprecated(since = "6.0", forRemoval = true)
+	@Deprecated
 	B2BBudgetModel getB2BBudgetForCode(final String code);
 
 	/**
 	 * @return {@link B2BBudgetModel} all B2BBudgets to which the caller has visiblity
 	 * @deprecated Since 6.0. Use {@link de.hybris.platform.b2b.services.B2BBudgetService#getB2BBudgets()}
 	 */
-	@Deprecated(since = "6.0", forRemoval = true)
+	@Deprecated
 	Set<B2BBudgetModel> getB2BBudgets();
 
 	/**

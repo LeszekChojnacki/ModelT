@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2bapprovalprocessfacades.company.impl;
 
@@ -51,7 +58,7 @@ public class DefaultB2BApproverFacade implements B2BApproverFacade
 	 *             {@link de.hybris.platform.b2bapprovalprocessfacades.company.impl.DefaultB2BApproverFacade#b2bUserConverter}
 	 *             instead.
 	 */
-	@Deprecated(since = "1808", forRemoval = true)
+	@Deprecated
 	private Converter<B2BCustomerModel, CustomerData> b2BUserConverter; //NOSONAR
 
 	@Override
@@ -239,7 +246,7 @@ public class DefaultB2BApproverFacade implements B2BApproverFacade
 	 *             {@link de.hybris.platform.b2bapprovalprocessfacades.company.impl.DefaultB2BApproverFacade#getB2bUserConverter()}
 	 *             instead.
 	 */
-	@Deprecated(since = "1808", forRemoval = true)
+	@Deprecated
 	protected Converter<B2BCustomerModel, CustomerData> getB2BUserConverter() //NOSONAR
 	{
 		return b2BUserConverter;
@@ -250,7 +257,7 @@ public class DefaultB2BApproverFacade implements B2BApproverFacade
 	 *             {@link de.hybris.platform.b2bapprovalprocessfacades.company.impl.DefaultB2BApproverFacade#setB2bUserConverter(Converter)}
 	 *             instead.
 	 */
-	@Deprecated(since = "1808", forRemoval = true)
+	@Deprecated
 	@Required
 	public void setB2BUserConverter(final Converter<B2BCustomerModel, CustomerData> b2BUserConverter) //NOSONAR
 	{

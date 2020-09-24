@@ -1,5 +1,12 @@
 # -----------------------------------------------------------------------
-# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
 INSERT_UPDATE UserGroup;&Item;creationtime[forceWrite=false,dateformat=dd.MM.yyyy hh:mm:ss];description;locname[lang=en];name;owner(&Item);readableLanguages(isocode);uid[unique=true,allownull=true];userDiscountGroup(code,itemtype(code));userPriceGroup(code,itemtype(code));userTaxGroup(code,itemtype(code));writeableLanguages(isocode)
 ;Item105;02.08.2010 10:22:36;administrator usergroup;Administrator group;;;;admingroup;;;;

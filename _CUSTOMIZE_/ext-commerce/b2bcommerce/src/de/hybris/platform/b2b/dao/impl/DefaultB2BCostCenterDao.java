@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2b.dao.impl;
 
@@ -67,5 +74,30 @@ public class DefaultB2BCostCenterDao extends DefaultGenericDao<B2BCostCenterMode
 		final SearchResult<B2BCostCenterModel> result = getFlexibleSearchService().search(query);
 		return result.getResult();
 
+	}
+
+	/**
+	 * Returns list of distinct {@link CurrencyModel} for a {@link B2BCostCenterModel} associated with a set of B2BUnits.
+	 * 
+	 * @param branch
+	 * @return List of {@link CurrencyModel}
+	 */
+	public List<CurrencyModel> findCurrenciesForAllCostCentersOfUnit(final Set<B2BUnitModel> branch)
+	{
+		final StringBuilder queryBuilder = new StringBuilder();
+		queryBuilder.append(" SELECT DISTINCT {c:currency} ");
+		queryBuilder.append(" FROM {B2BCostCenter as c}");
+		queryBuilder.append(" WHERE {c:active} = 1 ");
+		queryBuilder.append(" AND {c:unit} in ( ?branch ) ");
+		queryBuilder.append(" ORDER BY {c:currency} ASC");
+
+		final FlexibleSearchQuery query = new FlexibleSearchQuery(queryBuilder.toString());
+		query.setCount(-1);
+		query.setDisableSearchRestrictions(true);
+		query.setStart(0);
+		query.getQueryParameters().put("branch", branch);
+
+		final SearchResult<CurrencyModel> result = getFlexibleSearchService().search(query);
+		return result.getResult();
 	}
 }

@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2bcommercefacades.company.impl;
 
@@ -9,7 +16,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import de.hybris.bootstrap.annotations.IntegrationTest;
@@ -166,36 +172,24 @@ public class DefaultB2BUserFacadeIntegrationTest extends AbstractCommerceOrgInte
 		assertEquals("Unexpected number of customer roles", 1, newCustomer.getRoles().size());
 		assertTrue("Expexted customer role [b2bcustomergroup] not assigned", newCustomer.getRoles().contains("b2bcustomergroup"));
 	}
-	
-	@Test
-	public void shouldUpdateCustomerTitleCodeNull()
-	{
-		final CustomerData customer = new CustomerData();
-		// no actual updates, but fields are not populated and are mandatory for the update
-		customer.setEmail("DC.S.Det.2@gmail.com");
-		customer.setDisplayUid("DC S Det 2");
-
-		// set fields
-		customer.setTitleCode(null);
-		customer.setFirstName("Newer");
-		customer.setLastName("FavCustomer");
-		customer.setUnit(defaultB2BUnitFacade.getUnitForUid(DC_SALES_NOTTINGHAM));
-
-		// create a new customer
-		defaultB2BUserFacade.updateCustomer(customer);
-
-		final CustomerData newCustomer = defaultB2BUserFacade.getCustomerForUid("DC S Det 2".toLowerCase()); // reverse populator makes uid lowercase
-		assertNotNull("Returned customer is null", newCustomer);
-		assertNull("Title code isn't updated", newCustomer.getTitleCode());
-		assertEquals("Unexpected customer name", "Newer FavCustomer", newCustomer.getName());
-		assertNotNull("Customer unit is null", newCustomer.getUnit());
-		assertEquals("Unexpexted customer unit", DC_SALES_NOTTINGHAM, newCustomer.getUnit().getUid());
-	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void shouldNotUpdateCustomerCustomerDataNull()
 	{
 		defaultB2BUserFacade.updateCustomer(null);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void shouldNotUpdateCustomerTitleCodeEmpty()
+	{
+		final CustomerData customer = new CustomerData();
+
+		// set fields
+		customer.setTitleCode(StringUtils.EMPTY);
+		customer.setFirstName("New");
+		customer.setLastName("Customer");
+
+		defaultB2BUserFacade.updateCustomer(customer);
 	}
 
 	@Test(expected = IllegalArgumentException.class)

@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2b.dao.impl;
 
@@ -24,11 +31,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.apache.commons.beanutils.BeanPropertyValueEqualsPredicate;
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang.ClassUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
@@ -39,7 +44,7 @@ import org.springframework.beans.factory.annotation.Required;
  *
  * @deprecated Since 4.4. Perfer use of {@link de.hybris.platform.servicelayer.internal.dao.DefaultGenericDao}
  */
-@Deprecated(since = "4.4", forRemoval = true)
+@Deprecated
 public class BaseDao implements Dao
 {
 	private static final Logger LOG = Logger.getLogger(BaseDao.class);
@@ -337,64 +342,17 @@ public class BaseDao implements Dao
 			final Map<String, Boolean> orderByMap, final int count, final int start, final boolean excludeSubtypes,
 			final Class<M> modelClass)
 	{
-		final String modelType = modelService.getModelType(modelClass);
-		final String queryString;
+		final StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("SELECT {pk} FROM {").append(modelService.getModelType(modelClass));
+
 		if (excludeSubtypes)
 		{
-			queryString = createFindAllByAttributesWithNoSubtypesQuery(attribs, orderByMap, modelType);
+			stringBuilder.append("!}");
 		}
 		else
 		{
-			queryString = createFindAllByAttributesWithSubtypesQuery(attribs, orderByMap, modelType);
+			stringBuilder.append("}");
 		}
-
-		if (LOG.isTraceEnabled())
-		{
-			LOG.trace(queryString + " attributes: " + attribs);
-		}
-
-		final FlexibleSearchQuery query = new FlexibleSearchQuery(queryString);
-		query.setCount(count);
-		query.setStart(start);
-		if (attribs != null)
-		{
-			query.getQueryParameters().putAll(attribs);
-		}
-		final SearchResult<M> result = flexibleSearchService.search(query);
-		return result.getResult();
-	}
-
-	private String createFindAllByAttributesWithSubtypesQuery(final Map<String, Object> attribs,
-			final Map<String, Boolean> orderByMap, final String modelType)
-	{
-		final StringBuilder stringBuilder = new StringBuilder();
-
-		stringBuilder.append("GET {").append(modelType).append("}");
-
-		if (MapUtils.isNotEmpty(attribs))
-		{
-			stringBuilder.append(" WHERE ");
-			stringBuilder.append(attribs.keySet()
-               .stream()
-               .map(s -> "{" + s + "} = ?" + s)
-               .collect(Collectors.joining(" AND ")));
-		}
-
-		if (MapUtils.isNotEmpty(orderByMap))
-		{
-			stringBuilder.append(" ORDER BY ");
-			stringBuilder.append(orderByMap.entrySet().stream().map(e -> "{" + e.getKey() + "}" + (e.getValue() ? "ASC" : "DESC"))
-					.collect(Collectors.joining(", ")));
-		}
-
-		return stringBuilder.toString();
-	}
-
-	private String createFindAllByAttributesWithNoSubtypesQuery(final Map<String, Object> attribs,
-			final Map<String, Boolean> orderByMap, final String modelType)
-	{
-		final StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("SELECT {pk} FROM {").append(modelType).append("!}");
 
 		if (attribs != null && CollectionUtils.isNotEmpty(attribs.entrySet()))
 		{
@@ -416,7 +374,20 @@ public class BaseDao implements Dao
 			stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length());
 		}
 
-		return stringBuilder.toString();
+		if (LOG.isTraceEnabled())
+		{
+			LOG.trace(stringBuilder.toString() + " attributes: " + attribs);
+		}
+
+		final FlexibleSearchQuery query = new FlexibleSearchQuery(stringBuilder.toString());
+		query.setCount(count);
+		query.setStart(start);
+		if (attribs != null)
+		{
+			query.getQueryParameters().putAll(attribs);
+		}
+		final SearchResult<M> result = flexibleSearchService.search(query);
+		return result.getResult();
 	}
 
 

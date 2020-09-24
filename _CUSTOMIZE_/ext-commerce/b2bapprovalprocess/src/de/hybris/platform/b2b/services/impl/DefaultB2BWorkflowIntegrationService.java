@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2b.services.impl;
 
@@ -70,7 +77,7 @@ public class DefaultB2BWorkflowIntegrationService implements B2BWorkflowIntegrat
 	 * @deprecated As of hybris 4.4, replaced by {@link #getActionForCode(String)}
 	 */
 	@Override
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	public WorkflowActionModel getActionByCode(final String code)
 	{
 		return getActionForCode(code);
@@ -80,7 +87,7 @@ public class DefaultB2BWorkflowIntegrationService implements B2BWorkflowIntegrat
 	 * @deprecated Since 4.4.
 	 */
 	@Override
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	public WorkflowActionModel getActionForCode(final String code) // NOSONAR
 	{
 		return getB2bWorkflowActionDao().findWorkflowActionByCode(code);
@@ -91,7 +98,7 @@ public class DefaultB2BWorkflowIntegrationService implements B2BWorkflowIntegrat
 	 *             {@link #getWorkflowActionsForActionStatusAndUser(WorkflowActionStatus, String, UserModel)}
 	 */
 	@Override
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	public Collection<WorkflowActionModel> findByActionStatusAndUser(final WorkflowActionStatus status, final String qualifier,
 			final UserModel user)
 	{
@@ -130,7 +137,7 @@ public class DefaultB2BWorkflowIntegrationService implements B2BWorkflowIntegrat
 	 *             decideAction(action, DECISIONCODES.APPROVE.name())
 	 */
 	@Override
-	@Deprecated(since = "6.2", forRemoval = true)
+	@Deprecated
 	public void approveWorkflowAction(final WorkflowActionModel workflowActionModel)
 	{
 		this.decideAction(workflowActionModel, DECISIONCODES.APPROVE.name());
@@ -141,7 +148,7 @@ public class DefaultB2BWorkflowIntegrationService implements B2BWorkflowIntegrat
 	 *             decideAction(action, DECISIONCODES.REJECT.name())
 	 */
 	@Override
-	@Deprecated(since = "6.2", forRemoval = true)
+	@Deprecated
 	public void rejectWorkflowAction(final WorkflowActionModel workflowActionModel)
 	{
 		this.decideAction(workflowActionModel, DECISIONCODES.REJECT.name());
@@ -167,8 +174,8 @@ public class DefaultB2BWorkflowIntegrationService implements B2BWorkflowIntegrat
 				new BeanPropertyValueEqualsPredicate(WorkflowDecisionModel.QUALIFIER, decisionQualifier));
 		Assert.notNull(workflowDecisionModel,
 				String.format("Could not locate a decision %s for workflowAction %s out of decisions %s", decisionQualifier,
-						workflowActionModel.getCode(), CollectionUtils
-								.collect(decisions, new BeanToPropertyValueTransformer(WorkflowDecisionModel.CODE)).toString()));
+						workflowActionModel.getCode(),
+						CollectionUtils.collect(decisions, new BeanToPropertyValueTransformer(WorkflowDecisionModel.CODE)).toString()));
 		decideAction(workflowActionModel, workflowDecisionModel);
 		if (LOG.isInfoEnabled())
 		{
@@ -223,7 +230,7 @@ public class DefaultB2BWorkflowIntegrationService implements B2BWorkflowIntegrat
 	 *             usage of the method should be removed pending fix to https://jira.hybris.com/browse/PLA-10938
 	 */
 	@Override
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	public WorkflowModel createWorkflow(final WorkflowTemplateModel template, final List<? extends ItemModel> attachments)
 	{
 		final WorkflowModel workflow = getWorkflowService().createWorkflow(template.getName(), template,
@@ -246,7 +253,7 @@ public class DefaultB2BWorkflowIntegrationService implements B2BWorkflowIntegrat
 	/**
 	 * @deprecated Since 4.4. Unused, will be removed in the next release
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	protected WorkflowActionModel getWorkAction(final WorkflowActionTemplateModel templateAction,
 			final Collection<WorkflowActionModel> workflowActions)
 	{
@@ -284,7 +291,7 @@ public class DefaultB2BWorkflowIntegrationService implements B2BWorkflowIntegrat
 	 *             usage of the method should be removed pending fix to https://jira.hybris.com/browse/PLA-10938
 	 */
 	@Override
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	public void startWorkflow(final WorkflowModel workflowModel)
 	{
 		getWorkflowProcessingService().startWorkflow(workflowModel);
@@ -335,7 +342,7 @@ public class DefaultB2BWorkflowIntegrationService implements B2BWorkflowIntegrat
 	 * @deprecated As of hybris 4.4, replaced by {@link #getWorkflowForOrder(OrderModel)}
 	 */
 	@Override
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	public WorkflowModel findWorkflowForOrder(final OrderModel order)
 	{
 		return getWorkflowForOrder(order);

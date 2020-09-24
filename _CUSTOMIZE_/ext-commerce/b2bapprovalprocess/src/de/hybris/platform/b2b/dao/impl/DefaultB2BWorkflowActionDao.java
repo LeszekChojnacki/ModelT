@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2b.dao.impl;
 
@@ -20,7 +27,7 @@ import java.util.Map;
 
 /**
  * Default implementation of the {@link B2BWorflowActionDao}
- *
+ * 
  * @spring.bean b2bWorflowActionDao
  */
 public class DefaultB2BWorkflowActionDao extends DefaultGenericDao<WorkflowActionModel> implements B2BWorflowActionDao
@@ -35,14 +42,15 @@ public class DefaultB2BWorkflowActionDao extends DefaultGenericDao<WorkflowActio
 	 * @deprecated Since 4.4.
 	 */
 	@Override
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	public Collection<WorkflowActionModel> findActionByUserAndStatus(final WorkflowActionStatus status, final UserModel user)
 	{
 		final Map<String, Object> attr = new HashMap<String, Object>(2);
 		attr.put("status", status);
 		attr.put("user", user);
 		final StringBuilder sql = new StringBuilder();
-		sql.append("SELECT tbl.action FROM ( ").append("{{SELECT {actions:PK} action FROM { ").append(WorkflowActionModel._TYPECODE)
+		sql.append("SELECT tbl.action FROM ( ").append("{{SELECT {actions:PK} action FROM { ")
+				.append(WorkflowActionModel._TYPECODE)
 				.append(" as actions} WHERE {actions:status}=?status AND {actions:principalAssigned}=?user }}").append(" UNION ALL ")
 				.append("{{ SELECT {actions:PK} action FROM { ").append(WorkflowActionModel._TYPECODE)
 				.append(" as actions JOIN PrincipalGroupRelation as rel ON {actions:principalAssigned}={rel:target}" + " } ")
@@ -80,7 +88,7 @@ public class DefaultB2BWorkflowActionDao extends DefaultGenericDao<WorkflowActio
 	 * @deprecated As of hybris 4.4, replaced by {@link #findWorkflowActionByCode(String)}
 	 */
 	@Override
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	public WorkflowActionModel getWorkflowActionByCode(final String code)
 	{
 		return findWorkflowActionByCode(code);

@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2bcommercefacades.company.converters.populators;
 
@@ -49,7 +56,6 @@ public class B2BUserPopulator implements Populator<B2BCustomerModel, CustomerDat
 		target.setUid(source.getUid());
 		target.setNormalizedUid(target.getUid().replaceAll("\\W", "_"));
 		target.setName(source.getName());
-		target.setCustomerId(source.getCustomerID());
 		target.setActive(Boolean.TRUE.equals(source.getActive()));
 
 		populateUnit(source, target);

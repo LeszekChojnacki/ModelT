@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2b.dao;
 
@@ -25,6 +32,14 @@ public interface B2BCostCenterDao extends GenericDao<B2BCostCenterModel>
 	 * @return List {@link B2BCostCenterModel}
 	 */
 	List<B2BCostCenterModel> findActiveCostCentersByBranchAndCurrency(final Set<B2BUnitModel> branch, final CurrencyModel currency);
+	
+	/**
+	 * Returns list of currencies for all cost centers of given branch.
+	 * 
+	 * @param branch
+	 * @return List {@link CurrencyModel}
+	 */
+	List<CurrencyModel> findCurrenciesForAllCostCentersOfUnit(final Set<B2BUnitModel> branch);
 
 	/**
 	 * Finds B2BCostCenter by code, If none is found null is returned.

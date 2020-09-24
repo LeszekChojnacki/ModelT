@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2b.mail.impl;
 
@@ -23,10 +30,10 @@ import org.springframework.beans.factory.annotation.Required;
 
 /**
  * Renders velocity templates defined by {@link RendererTemplateModel}'s.
- *
+ * 
  * @deprecated Since 4.4. Use {@link de.hybris.platform.commons.renderer.impl.VelocityTemplateRenderer}
  */
-@Deprecated(since = "4.4", forRemoval = true)
+@Deprecated
 public class VelocityTemplateRenderer implements TemplateRenderer
 {
 	private static final Logger LOG = Logger.getLogger(VelocityTemplateRenderer.class.getName());
@@ -37,7 +44,7 @@ public class VelocityTemplateRenderer implements TemplateRenderer
 	/**
 	 * Evaluates the content of the templates media via a velocity engine. I If an error occurs it is logged and the
 	 * method terminates.
-	 *
+	 * 
 	 * @param template
 	 *           the template
 	 * @param context
@@ -50,13 +57,13 @@ public class VelocityTemplateRenderer implements TemplateRenderer
 	{
 		InputStream is = null;
 		InputStreamReader reader = null;
-		try		//NOSONAR
+		try
 		{
 			final Class c = Thread.currentThread().getContextClassLoader().loadClass(template.getContextClass());
 			if (!c.isAssignableFrom(context.getClass()))
 			{
-				throw new InvalidParameterException(
-						"The context class [" + context.getClass().getName() + "] is not correctly defined.");
+				throw new InvalidParameterException("The context class [" + context.getClass().getName()
+						+ "] is not correctly defined.");
 			}
 
 			final MediaModel m = template.getContent();

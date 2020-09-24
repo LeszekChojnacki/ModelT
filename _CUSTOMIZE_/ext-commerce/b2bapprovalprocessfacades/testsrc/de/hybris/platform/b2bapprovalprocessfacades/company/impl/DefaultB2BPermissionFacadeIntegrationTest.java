@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2bapprovalprocessfacades.company.impl;
 
@@ -24,7 +31,6 @@ import de.hybris.platform.b2bapprovalprocessfacades.company.data.B2BPermissionTy
 import de.hybris.platform.b2bcommercefacades.company.data.B2BUnitData;
 import de.hybris.platform.b2bcommercefacades.testframework.AbstractCommerceOrgIntegrationTest;
 import de.hybris.platform.commercefacades.user.data.CustomerData;
-import de.hybris.platform.commerceservices.customer.DuplicateUidException;
 import de.hybris.platform.commerceservices.search.pagedata.PageableData;
 import de.hybris.platform.commerceservices.search.pagedata.SearchPageData;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
@@ -39,7 +45,6 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.commons.lang.StringUtils;
-import org.junit.Assert;
 import org.junit.Test;
 
 
@@ -107,14 +112,7 @@ public class DefaultB2BPermissionFacadeIntegrationTest extends AbstractCommerceO
 				.getB2BPermissionTypeDataForPermission(B2BPermissionTypeEnum.B2BBUDGETEXCEEDEDPERMISSION));
 		testPermissionData.setUnit(unitData);
 
-		try
-		{
-			defaultB2BPermissionFacade.addPermission(testPermissionData);
-		}
-		catch (final DuplicateUidException e)
-		{
-			Assert.fail("Should not throw DuplicateUidException");
-		}
+		defaultB2BPermissionFacade.addPermission(testPermissionData);
 
 		// use the service layer to assert the permission has been created
 		// properly

@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2b.dao.impl;
 
@@ -35,11 +42,11 @@ import org.springframework.beans.factory.annotation.Required;
 public class DefaultB2BOrderDao extends DefaultGenericDao<OrderModel> implements B2BOrderDao
 {
 	private static final Logger LOG = Logger.getLogger(DefaultB2BOrderDao.class);
-
+	
 	/**
 	 * @deprecated Since 4.4.
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	private BaseDao baseDao;
 	private TypeService typeService;
 
@@ -118,7 +125,7 @@ public class DefaultB2BOrderDao extends DefaultGenericDao<OrderModel> implements
 	/**
 	 * @deprecated Since 4.4. Use {@link #findOrdersApprovedByDateRange(UserModel,Date,Date)} instead
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	@Override
 	public List<OrderModel> findOrdersApprovedForDateRange(final UserModel user, final Date startDate, final Date endDate)
 	{
@@ -134,8 +141,11 @@ public class DefaultB2BOrderDao extends DefaultGenericDao<OrderModel> implements
 		attr.put("startDate", startDate);
 		attr.put("endDate", endDate);
 		final StringBuilder sql = new StringBuilder();
-		sql.append("SELECT {o:pk} from { ").append(OrderModel._TYPECODE).append(" as o} WHERE {o:user} = ?user ")
-				.append(" and {o:status} = ?status and {o:date} >= ?startDate and {o:date} <= ?endDate AND {" + OrderModel.VERSIONID
+		sql.append("SELECT {o:pk} from { ")
+				.append(OrderModel._TYPECODE)
+				.append(" as o} WHERE {o:user} = ?user ")
+				.append(
+							" and {o:status} = ?status and {o:date} >= ?startDate and {o:date} <= ?endDate AND {" + OrderModel.VERSIONID
 						+ "} IS NULL ORDER BY {o.date} DESC");
 		final FlexibleSearchQuery query = new FlexibleSearchQuery(sql.toString());
 		query.getQueryParameters().putAll(attr);
@@ -155,10 +165,12 @@ public class DefaultB2BOrderDao extends DefaultGenericDao<OrderModel> implements
 		attr.put("unitUID", unitModel.getUid());
 		attr.put("currency", currency.getIsocode());
 		final StringBuilder sql = new StringBuilder();
-		sql.append("SELECT {o:pk} from { ").append(OrderModel._TYPECODE)
+		sql.append("SELECT {o:pk} from { ")
+				.append(OrderModel._TYPECODE)
 				.append(" as o}, {B2BUnit as u} , {Currency as c} WHERE {o:unit} = {u:pk} and {u:uid}=?unitUID")
 				.append(" and {o:status} = ?status and {o.currency}={c.pk} and {c.isocode}=?currency")
-				.append(" and {o:date} >= ?startDate and {o:date} <= ?endDate AND {" + OrderModel.VERSIONID
+				.append(
+							" and {o:date} >= ?startDate and {o:date} <= ?endDate AND {" + OrderModel.VERSIONID
 						+ "} IS NULL ORDER BY {o.date} DESC");
 		final FlexibleSearchQuery query = new FlexibleSearchQuery(sql.toString());
 		query.getQueryParameters().putAll(attr);
@@ -169,9 +181,9 @@ public class DefaultB2BOrderDao extends DefaultGenericDao<OrderModel> implements
 	/**
 	 * Finds CartToOrderCronJob for a given user.
 	 *
-	 * @deprecated Since 6.0. Use {@link DefaultCartToOrderCronJobModelDao#findCartToOrderCronJobs(UserModel)} instead
+	 * @deprecated Since 6.0.  Use {@link DefaultCartToOrderCronJobModelDao#findCartToOrderCronJobs(UserModel)} instead
 	 */
-	@Deprecated(since = "6.0", forRemoval = true)
+	@Deprecated
 	@Override
 	public List<CartToOrderCronJobModel> findCartToOrderCronJobs(final UserModel user)
 	{
@@ -179,9 +191,13 @@ public class DefaultB2BOrderDao extends DefaultGenericDao<OrderModel> implements
 		attr.put(OrderModel.USER, user);
 		attr.put(CartToOrderCronJobModel.ACTIVE, Boolean.TRUE);
 		final StringBuilder sql = new StringBuilder();
-		sql.append("SELECT {soj:pk} FROM { ").append(CartToOrderCronJobModel._TYPECODE).append(" as soj JOIN ")
-				.append(CartModel._TYPECODE).append(" as c ON {soj.cart} = {c:pk} } ")
-				.append(" WHERE {soj:active} = ?active and {c:user} = ?user AND {" + OrderModel.VERSIONID
+		sql.append("SELECT {soj:pk} FROM { ")
+				.append(CartToOrderCronJobModel._TYPECODE)
+				.append(" as soj JOIN ")
+				.append(CartModel._TYPECODE)
+				.append(" as c ON {soj.cart} = {c:pk} } ")
+				.append(
+							" WHERE {soj:active} = ?active and {c:user} = ?user AND {" + OrderModel.VERSIONID
 						+ "} IS NULL ORDER BY {c.date} DESC");
 
 		final FlexibleSearchQuery query = new FlexibleSearchQuery(sql.toString());
@@ -193,7 +209,7 @@ public class DefaultB2BOrderDao extends DefaultGenericDao<OrderModel> implements
 	/**
 	 * @deprecated Since 6.0. Use {@link DefaultCartToOrderCronJobModelDao#findCartToOrderCronJob(String)} instead
 	 */
-	@Deprecated(since = "6.0", forRemoval = true)
+	@Deprecated
 	public CartToOrderCronJobModel findCartToOrderModel(final String code)
 	{
 		return baseDao.findFirstByAttribute(CartToOrderCronJobModel.CODE, code, CartToOrderCronJobModel.class);
@@ -212,10 +228,9 @@ public class DefaultB2BOrderDao extends DefaultGenericDao<OrderModel> implements
 	}
 
 	/**
-	 * @deprecated Since 4.4. Use {@link #findOrderTotalsByDateRangeAndCurrency(B2BUnitModel,Date,Date,CurrencyModel)}
-	 *             instead
+	 * @deprecated Since 4.4. Use {@link #findOrderTotalsByDateRangeAndCurrency(B2BUnitModel,Date,Date,CurrencyModel)} instead
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	@Override
 	public Double findOrderTotalsForDateRangeByCurrency(final B2BUnitModel unitModel, final Date startDate, final Date endDate,
 			final CurrencyModel currency)
@@ -260,7 +275,7 @@ public class DefaultB2BOrderDao extends DefaultGenericDao<OrderModel> implements
 	/**
 	 * @deprecated Since 6.3.
 	 */
-	@Deprecated(since = "6.3", forRemoval = true)
+	@Deprecated
 	@Override
 	public List<OrderModel> findPendingQuoteOrders(final UserModel user)
 	{
@@ -270,7 +285,7 @@ public class DefaultB2BOrderDao extends DefaultGenericDao<OrderModel> implements
 	/**
 	 * @deprecated Since 6.3.
 	 */
-	@Deprecated(since = "6.3", forRemoval = true)
+	@Deprecated
 	@Override
 	public List<OrderModel> findApprovedQuoteOrders(final UserModel user)
 	{
@@ -280,7 +295,7 @@ public class DefaultB2BOrderDao extends DefaultGenericDao<OrderModel> implements
 	/**
 	 * @deprecated Since 6.3.
 	 */
-	@Deprecated(since = "6.3", forRemoval = true)
+	@Deprecated
 	@Override
 	public List<OrderModel> findRejectedQuoteOrders(final UserModel user)
 	{

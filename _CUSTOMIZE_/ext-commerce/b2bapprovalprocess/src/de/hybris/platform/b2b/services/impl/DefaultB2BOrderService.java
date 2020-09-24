@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2b.services.impl;
 
@@ -117,7 +124,7 @@ public class DefaultB2BOrderService extends DefaultOrderService implements B2BOr
 	/**
 	 * @deprecated Since 4.4. Use {@link #getScheduledCartToOrderJobForCode(String)} instead
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	@Override
 	public CartToOrderCronJobModel findScheduledCartToOrderJob(final String code)
 	{
@@ -164,7 +171,7 @@ public class DefaultB2BOrderService extends DefaultOrderService implements B2BOr
 	/**
 	 * @deprecated Since 4.4. Use {@link #getOrderForCode(String)} instead
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	@Override
 	public OrderModel getOrderByCode(final String code)
 	{
@@ -203,7 +210,7 @@ public class DefaultB2BOrderService extends DefaultOrderService implements B2BOr
 	/**
 	 * @deprecated Since 4.4. Use {@link #getRejectedForMerchantOrders(UserModel)} instead
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	@Override
 	public List<OrderModel> getRejectedByMerchantOrders(final UserModel user)
 	{
@@ -241,7 +248,7 @@ public class DefaultB2BOrderService extends DefaultOrderService implements B2BOr
 	/**
 	 * @deprecated Since 6.3.
 	 */
-	@Deprecated(since = "6.3", forRemoval = true)
+	@Deprecated
 	@Override
 	public List<OrderModel> getRejectedQuoteOrders(final UserModel user)
 	{
@@ -259,7 +266,7 @@ public class DefaultB2BOrderService extends DefaultOrderService implements B2BOr
 	/**
 	 * @deprecated Since 6.3.
 	 */
-	@Deprecated(since = "6.3", forRemoval = true)
+	@Deprecated
 	@Override
 	public List<OrderModel> getApprovedQuoteOrders(final UserModel user)
 	{
@@ -278,7 +285,7 @@ public class DefaultB2BOrderService extends DefaultOrderService implements B2BOr
 	/**
 	 * @deprecated Since 6.3.
 	 */
-	@Deprecated(since = "6.3", forRemoval = true)
+	@Deprecated
 	@Override
 	public List<OrderModel> getPendingQuoteOrders(final UserModel user)
 	{
@@ -296,7 +303,7 @@ public class DefaultB2BOrderService extends DefaultOrderService implements B2BOr
 	/**
 	 * @deprecated Since 6.3.
 	 */
-	@Deprecated(since = "6.3", forRemoval = true)
+	@Deprecated
 	@Override
 	public boolean isQuoteAllowed(final AbstractOrderModel source)
 	{

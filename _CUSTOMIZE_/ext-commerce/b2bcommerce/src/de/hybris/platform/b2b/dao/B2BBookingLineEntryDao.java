@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2b.dao;
 
@@ -13,7 +20,7 @@ import java.util.List;
 
 /**
  * A dao around {@link B2BBookingLineEntryModel}
- *
+ * 
  *
  * @spring.bean b2bBookingLineEntryDao
  */
@@ -22,7 +29,7 @@ public interface B2BBookingLineEntryDao
 
 	/**
 	 * Gets the total cost of BookingLines between particular dates
-	 *
+	 * 
 	 * @param costCenter
 	 *           the costCenter
 	 * @param startDate
@@ -32,12 +39,12 @@ public interface B2BBookingLineEntryDao
 	 * @return amount of the total cost
 	 * @deprecated Since 4.4. Use {@link #findTotalCostByCostCenterAndDate(B2BCostCenterModel,Date,Date)} instead
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	public abstract Double getTotalCost(final B2BCostCenterModel costCenter, final Date startDate, final Date endDate);
 
 	/**
 	 * Gets the total cost of BookingLines between a particular date range
-	 *
+	 * 
 	 * @param costCenter
 	 *           the costCenter
 	 * @param startDate
@@ -55,13 +62,13 @@ public interface B2BBookingLineEntryDao
 	 * @return a list of open bookings
 	 * @deprecated Since 4.4. Use {@link #findOpenBookingLineEntriesByCostCenterAndDate(List, Date)} instead
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	public abstract List<B2BBookingLineEntryModel> getOpenBookingLineEntries(final List<B2BCostCenterModel> costCenters,
 			final Date bookingDate);
 
 	/**
 	 * Finds open booking lines
-	 *
+	 * 
 	 * @param costCenters
 	 *           the costCenter
 	 * @param bookingDate

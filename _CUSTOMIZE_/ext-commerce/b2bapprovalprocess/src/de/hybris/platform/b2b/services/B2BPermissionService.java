@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2b.services;
 
@@ -56,7 +63,7 @@ public interface B2BPermissionService<T extends UserModel, P extends B2BPermissi
 	 *           permissions that need approval
 	 * @return the set of {@link B2BPermissionResultModel}
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	abstract Set<P> findApproversForOpenPermissions(final AbstractOrderModel order, final T customer,
 			final Collection<P> openPermissions);
 
@@ -92,7 +99,7 @@ public interface B2BPermissionService<T extends UserModel, P extends B2BPermissi
 	 *           the permission code
 	 * @return the permission
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	abstract B2BPermissionModel findB2BPermissionByCode(final String code);
 
 	/**
@@ -109,7 +116,7 @@ public interface B2BPermissionService<T extends UserModel, P extends B2BPermissi
 	 *
 	 * @return the set of {@link B2BPermissionModel}
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	abstract Set<B2BPermissionModel> findAllB2BPermissions();
 
 	/**
@@ -153,7 +160,7 @@ public interface B2BPermissionService<T extends UserModel, P extends B2BPermissi
 	 *
 	 * @return the {@link List} of permission types
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	List<String> findAllB2BPermissionTypes();
 
 	/**

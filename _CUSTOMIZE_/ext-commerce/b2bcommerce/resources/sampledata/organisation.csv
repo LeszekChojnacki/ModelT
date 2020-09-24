@@ -1,5 +1,12 @@
 # -----------------------------------------------------------------------
-# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
 insert_update B2BUserGroup;B2BUnit(uid)[allownull=true];creationtime[forceWrite=false,dateformat=dd.MM.yyyy hh:mm:ss];description;locname[lang=de];locname[lang=en];name;owner(&Item);readableLanguages(isocode);uid[unique=true,allownull=true];userDiscountGroup(code,itemtype(code));userPriceGroup(code,itemtype(code));userTaxGroup(code,itemtype(code));writeableLanguages(isocode)
 ;Org A Company A.B;03.08.2010 04:09:46;Org A Company A.B Approver Group;;Org A Company A.B Approver Group;;;;Org A Company A.B Approver Group;;;;

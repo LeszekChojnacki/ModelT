@@ -1,11 +1,11 @@
 #Ant properties
-#Mon Aug 24 16:28:45 UTC 2020
-version.api=2005
-vendor=hybris
-group.id=de.hybris.platform
-name=b2bcommercefacades
+#Mon Nov 05 15:23:11 UTC 2018
+builddate=20181105 1523
 description=b2bcommercefacades
-builddate=20200824 1628
-releasedate=20200424 1851
-version=2005
+group.id=de.hybris.platform
 module.name=platform-module
+name=b2bcommercefacades
+releasedate=20180913 1839
+vendor=hybris
+version=18.11
+version.api=18.11.0

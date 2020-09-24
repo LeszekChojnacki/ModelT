@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2b.services;
 
@@ -59,7 +66,7 @@ public interface B2BWorkflowIntegrationService
 	 * @return WorkflowTemplateModel
 	 * @deprecated Since 4.4. {@link de.hybris.platform.workflow.WorkflowTemplateService#getWorkflowTemplateForCode(String)}
 	 */
-	@Deprecated(since = "4.4", forRemoval= true)
+	@Deprecated
 	WorkflowTemplateModel getWorkflowTemplateForCode(String code);
 
 	/**
@@ -99,7 +106,7 @@ public interface B2BWorkflowIntegrationService
 	 *           the workflow attachments
 	 * @return the workflow
 	 */
-	@Deprecated(since = "4.4", forRemoval= true)
+	@Deprecated
 	WorkflowModel createWorkflow(final WorkflowTemplateModel template, final List<? extends ItemModel> attachments);
 
 	/**
@@ -107,7 +114,7 @@ public interface B2BWorkflowIntegrationService
 	 * @deprecated Since 4.4. Use
 	 *             {@link de.hybris.platform.workflow.WorkflowProcessingService#startWorkflow(de.hybris.platform.workflow.model.WorkflowModel)}
 	 */
-	@Deprecated(since = "4.4", forRemoval= true)
+	@Deprecated
 	void startWorkflow(final WorkflowModel workflowModel);
 
 	/**
@@ -122,7 +129,7 @@ public interface B2BWorkflowIntegrationService
 	 *           the assigned user
 	 * @return the {@link Collection} of {WorkflowActionModel}
 	 */
-	@Deprecated(since = "4.4", forRemoval= true)
+	@Deprecated
 	Collection<WorkflowActionModel> findByActionStatusAndUser(final WorkflowActionStatus status, String qualifier,
 			final UserModel user);
 
@@ -155,7 +162,7 @@ public interface B2BWorkflowIntegrationService
 	 * @deprecated Since 4.4. Use {@link #decideAction(de.hybris.platform.workflow.model.WorkflowActionModel, String)}
 	 *             decideAction(action, DECISIONCODES.REJECT.name())
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	void rejectWorkflowAction(final WorkflowActionModel workflowActionModel);
 
 	/**
@@ -163,7 +170,7 @@ public interface B2BWorkflowIntegrationService
 	 * @deprecated Since 4.4. Use {@link #decideAction(de.hybris.platform.workflow.model.WorkflowActionModel, String)}
 	 *             decideAction(action, DECISIONCODES.APPROVE.name())
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	void approveWorkflowAction(final WorkflowActionModel workflowActionModel);
 
 	/**
@@ -173,7 +180,7 @@ public interface B2BWorkflowIntegrationService
 	 *           the action code
 	 * @return the workflow action
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	WorkflowActionModel getActionByCode(final String code);
 
 	/**
@@ -192,7 +199,7 @@ public interface B2BWorkflowIntegrationService
 	 *           the order for which to find the workflow
 	 * @return the order {@link WorkflowModel}
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	WorkflowModel findWorkflowForOrder(final OrderModel order);
 
 	/**
@@ -217,7 +224,7 @@ public interface B2BWorkflowIntegrationService
 
 	/**
 	 * Gets a collection of workflow actions for a user
-	 *
+	 * 
 	 * @param user
 	 *           the user
 	 * @return the {@link Collection} of {@link WorkflowActionModel}

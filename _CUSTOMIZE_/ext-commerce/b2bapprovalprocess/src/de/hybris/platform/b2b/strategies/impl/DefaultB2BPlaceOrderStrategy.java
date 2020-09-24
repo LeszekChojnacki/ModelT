@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2b.strategies.impl;
 
@@ -34,7 +41,7 @@ import org.springframework.util.Assert;
  * @deprecated Since 4.4. Use {@link DefaultB2BCreateOrderFromCartStrategy}
  */
 
-@Deprecated(since = "4.4", forRemoval = true)
+@Deprecated
 public class DefaultB2BPlaceOrderStrategy implements PlaceOrderStrategy
 {
 	@SuppressWarnings("unused")
@@ -46,7 +53,7 @@ public class DefaultB2BPlaceOrderStrategy implements PlaceOrderStrategy
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see
 	 * de.hybris.platform.order.strategies.PlaceOrderStrategy#placeOrder(de.hybris.platform.core.model.order.CartModel,
 	 * de.hybris.platform.core.model.user.AddressModel, de.hybris.platform.core.model.user.AddressModel,
@@ -98,8 +105,8 @@ public class DefaultB2BPlaceOrderStrategy implements PlaceOrderStrategy
 		final OrderStatus status = order.getStatus();
 		Assert.notNull(status, "Order status should have been set for order " + order.getCode());
 		final BusinessProcessStrategy businessProcessStrategy = getBusinessProcessStrategy(status.getCode());
-		Assert.notNull(businessProcessStrategy, String
-				.format("The stragegy for creating a business process with name %s should have been created", status.getCode()));
+		Assert.notNull(businessProcessStrategy,
+				String.format("The stragegy for creating a business process with name %s should have been created", status.getCode()));
 		businessProcessStrategy.createB2BBusinessProcess(order);
 	}
 

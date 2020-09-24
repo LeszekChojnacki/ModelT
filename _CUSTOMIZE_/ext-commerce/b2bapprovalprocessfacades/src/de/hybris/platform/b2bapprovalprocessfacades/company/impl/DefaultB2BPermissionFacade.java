@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2bapprovalprocessfacades.company.impl;
 
@@ -19,7 +26,6 @@ import de.hybris.platform.b2bcommercefacades.company.data.B2BSelectionData;
 import de.hybris.platform.b2bcommercefacades.company.util.B2BCompanyUtils;
 import de.hybris.platform.commercefacades.user.data.CustomerData;
 import de.hybris.platform.commercefacades.util.CommerceUtils;
-import de.hybris.platform.commerceservices.customer.DuplicateUidException;
 import de.hybris.platform.commerceservices.search.pagedata.PageableData;
 import de.hybris.platform.commerceservices.search.pagedata.SearchPageData;
 import de.hybris.platform.converters.Converters;
@@ -40,7 +46,6 @@ import org.springframework.beans.factory.annotation.Required;
  */
 public class DefaultB2BPermissionFacade implements B2BPermissionFacade
 {
-
 	private static final String CUSTOMER_UID_PARAM = "customerUid";
 	private static final String PAGEABLE_DATA_PARAM = "pageableData";
 	private static final String PERMISSION_CODE_PARAM = "permissionCode";
@@ -111,24 +116,18 @@ public class DefaultB2BPermissionFacade implements B2BPermissionFacade
 	}
 
 	@Override
-	public void addPermission(final B2BPermissionData permissionData) throws DuplicateUidException
+	public void addPermission(final B2BPermissionData permissionData)
 	{
 		validateParameterNotNullStandardMessage(PERMISSION_DATA_PARAM, permissionData);
 
-		if (getB2BCommercePermissionService().getPermissionForCode(permissionData.getCode()) != null)
-		{
-			throw new DuplicateUidException(
-					String.format("Approval Permission with code: %s already exists.", permissionData.getCode()));
-		}
-
 		final B2BPermissionTypeData permissionType = permissionData.getB2BPermissionTypeData();
-		final B2BPermissionModel newPermissionModel = permissionType == null ? null
+		final B2BPermissionModel permissionModel = permissionType == null ? null
 				: getModelService().create(B2BPermissionTypeEnum.valueOf(permissionType.getCode()).toString());
 
-		if (newPermissionModel != null)
+		if (permissionModel != null)
 		{
-			getB2BPermissionReverseConverter().convert(permissionData, newPermissionModel);
-			getModelService().save(newPermissionModel);
+			getB2BPermissionReverseConverter().convert(permissionData, permissionModel);
+			getModelService().save(permissionModel);
 		}
 	}
 

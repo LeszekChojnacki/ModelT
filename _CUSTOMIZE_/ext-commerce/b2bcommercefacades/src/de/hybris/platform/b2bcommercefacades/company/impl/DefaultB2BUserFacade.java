@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2bcommercefacades.company.impl;
 
@@ -23,8 +30,6 @@ import de.hybris.platform.commerceservices.search.pagedata.SearchPageData;
 import de.hybris.platform.servicelayer.dto.converter.Converter;
 import de.hybris.platform.servicelayer.model.ModelService;
 import de.hybris.platform.servicelayer.user.UserService;
-
-import java.util.UUID;
 
 import org.apache.commons.beanutils.BeanPropertyValueEqualsPredicate;
 import org.apache.commons.collections.CollectionUtils;
@@ -71,13 +76,13 @@ public class DefaultB2BUserFacade implements B2BUserFacade
 	public void updateCustomer(final CustomerData customerData)
 	{
 		validateParameterNotNullStandardMessage("customerData", customerData);
+		Assert.hasText(customerData.getTitleCode(), "The field [TitleCode] cannot be empty");
 		Assert.hasText(customerData.getFirstName(), "The field [FirstName] cannot be empty");
 		Assert.hasText(customerData.getLastName(), "The field [LastName] cannot be empty");
 		B2BCustomerModel customerModel;
 		if (StringUtils.isEmpty(customerData.getUid()))
 		{
 			customerModel = this.getModelService().create(B2BCustomerModel.class);
-			customerModel.setCustomerID(UUID.randomUUID().toString());
 		}
 		else
 		{

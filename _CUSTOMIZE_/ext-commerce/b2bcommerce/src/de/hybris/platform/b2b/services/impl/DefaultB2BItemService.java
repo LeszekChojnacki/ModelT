@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2b.services.impl;
 
@@ -25,11 +32,11 @@ import org.springframework.beans.factory.annotation.Required;
 
 
 /**
- * @deprecated Since 4.4. Distribute functionality to hybris services or if does not exist find an appropriate place in
- *             the b2b services.
+ * @deprecated Since 4.4. Distribute functionality to hybris services or if does not exist find an appropriate place in the b2b
+ *             services.
  */
 
-@Deprecated(since = "4.4", forRemoval = true)
+@Deprecated
 public class DefaultB2BItemService implements B2BItemService
 {
 
@@ -48,7 +55,7 @@ public class DefaultB2BItemService implements B2BItemService
 	 * @deprecated Since 4.4. Use {@link de.hybris.platform.b2b.services.B2BBudgetService#getB2BBudgetForCode(String)}
 	 */
 	@Override
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	public B2BBudgetModel findB2BBudgetByCode(final String code)
 	{
 		return getBaseDao().findFirstByAttribute(B2BBudgetModel.CODE, code, B2BBudgetModel.class);
@@ -58,7 +65,7 @@ public class DefaultB2BItemService implements B2BItemService
 	 * @deprecated Since 4.4. Use {@link de.hybris.platform.b2b.services.B2BCustomerService#getUserForUID(String)}
 	 */
 	@Override
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	public B2BCustomerModel findB2BCustomerByCode(final String code)
 	{
 		return getBaseDao().findFirstByAttribute(B2BCustomerModel.UID, code, B2BCustomerModel.class);
@@ -66,11 +73,10 @@ public class DefaultB2BItemService implements B2BItemService
 
 
 	/**
-	 * @deprecated Since 4.4. Use
-	 *             {@link de.hybris.platform.servicelayer.user.UserService#getUserGroupForUID(String, Class)}
+	 * @deprecated Since 4.4. Use {@link de.hybris.platform.servicelayer.user.UserService#getUserGroupForUID(String, Class)}
 	 */
 	@Override
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	public B2BUserGroupModel findB2BUserGroupByCode(final String code)
 	{
 		return getBaseDao().findFirstByAttribute(B2BUserGroupModel.UID, code, B2BUserGroupModel.class);
@@ -78,11 +84,10 @@ public class DefaultB2BItemService implements B2BItemService
 
 
 	/**
-	 * @deprecated Since 4.4. Use
-	 *             {@link de.hybris.platform.servicelayer.user.UserService#getUserGroupForUID(String, Class)}
+	 * @deprecated Since 4.4. Use {@link de.hybris.platform.servicelayer.user.UserService#getUserGroupForUID(String, Class)}
 	 */
 	@Override
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	public PrincipalGroupModel findPrincipalGroupByCode(final String code)
 	{
 		return getBaseDao().findFirstByAttribute(PrincipalGroupModel.UID, code, PrincipalGroupModel.class);
@@ -93,7 +98,7 @@ public class DefaultB2BItemService implements B2BItemService
 	 * @deprecated Since 4.4. {@link de.hybris.platform.b2b.services.B2BCostCenterService#getCostCenterForCode(String)}
 	 */
 	@Override
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	public B2BCostCenterModel findB2BCostCenterByCode(final String code)
 	{
 		return getBaseDao().findFirstByAttribute(B2BCostCenterModel.CODE, code, B2BCostCenterModel.class);
@@ -101,13 +106,13 @@ public class DefaultB2BItemService implements B2BItemService
 	}
 
 	/**
-	 * @deprecated Since 4.4. Use {@link de.hybris.platform.b2b.services.B2BBudgetService#isBudgetExisting(String)}
-	 *             Checks whether the budget exists regardless of visibility constraints
+	 * @deprecated Since 4.4. Use {@link de.hybris.platform.b2b.services.B2BBudgetService#isBudgetExisting(String)} Checks whether
+	 *             the budget exists regardless of visibility constraints
 	 * @param code
 	 * @return true is budget with this code exists
 	 */
 	@Override
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	public boolean budgetExists(final String code)
 	{
 
@@ -124,14 +129,13 @@ public class DefaultB2BItemService implements B2BItemService
 	}
 
 	/**
-	 * @deprecated Since 4.4. Use
-	 *             {@link de.hybris.platform.b2b.services.B2BCostCenterService#isCostCenterExisting(String)} Checks
+	 * @deprecated Since 4.4. Use {@link de.hybris.platform.b2b.services.B2BCostCenterService#isCostCenterExisting(String)} Checks
 	 *             whether the cost center exists regardless of visibility constraints
 	 * @param code
 	 * @return true is budget with this code exists
 	 */
 	@Override
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	public boolean costCenterExists(final String code)
 	{
 		return ((Boolean) getSessionService().executeInLocalView(new SessionExecutionBody()
@@ -150,7 +154,7 @@ public class DefaultB2BItemService implements B2BItemService
 	 * @deprecated Since 4.4. Use {@link de.hybris.platform.b2b.services.B2BBudgetService#getB2BBudgets()}
 	 */
 	@Override
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	public Set<B2BBudgetModel> findAllB2BBudgets()
 	{
 		final HashSet<B2BBudgetModel> models = new HashSet<B2BBudgetModel>();
@@ -163,7 +167,7 @@ public class DefaultB2BItemService implements B2BItemService
 	 * @deprecated Since 4.4. Use {@link de.hybris.platform.b2b.services.B2BCustomerService#getAllUsers()}
 	 */
 	@Override
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	public Set<B2BCustomerModel> findAllApprovers()
 	{
 		final HashSet<B2BCustomerModel> models = new HashSet<B2BCustomerModel>();
@@ -177,7 +181,7 @@ public class DefaultB2BItemService implements B2BItemService
 	 * @deprecated Since 4.4. {@link de.hybris.platform.b2b.services.B2BCustomerService#getAllB2BUserGroups()}
 	 */
 	@Override
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	public Set<B2BUserGroupModel> findAllB2BUserGroups()
 	{
 		final HashSet<B2BUserGroupModel> models = new HashSet<B2BUserGroupModel>();
@@ -189,7 +193,7 @@ public class DefaultB2BItemService implements B2BItemService
 	 * @deprecated Since 4.4.
 	 */
 	@Override
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	public List<PrincipalGroupModel> findAllRoleGroups()
 	{
 		final ArrayList<PrincipalGroupModel> models = new ArrayList<PrincipalGroupModel>();
@@ -204,7 +208,7 @@ public class DefaultB2BItemService implements B2BItemService
 	 * @deprecated Since 4.4.
 	 */
 	@Override
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	public <M extends ItemModel> List<M> findAllItems(final Class<M> model)
 	{
 		return getBaseDao().findAll(-1, 0, model);

@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2b.dao.impl;
 
@@ -19,7 +26,7 @@ import org.apache.log4j.Logger;
 
 /**
  * Default implementation of the {@link B2BWorkflowDao}
- *
+ * 
  * @spring.bean b2bWorkflowDao
  */
 public class DefaultB2BWorkflowDao extends DefaultGenericDao<WorkflowModel> implements B2BWorkflowDao
@@ -38,7 +45,7 @@ public class DefaultB2BWorkflowDao extends DefaultGenericDao<WorkflowModel> impl
 	 * @deprecated As of hybris 4.4, replaced by {@link #findWorkflowByOrder(OrderModel)}
 	 */
 	@Override
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	public WorkflowModel findWorkflowForOrder(final OrderModel order)
 	{
 		return findWorkflowByOrder(order);

@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2b.services.impl;
 
@@ -25,6 +32,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -53,7 +61,7 @@ public class DefaultB2BCostCenterService implements B2BCostCenterService<B2BCost
 	 * @deprecated Since 4.4. Use {@link #getCostCentersForUnitBranch(B2BCustomerModel, CurrencyModel)} instead
 	 */
 	@Override
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	public List<B2BCostCenterModel> findCostCentersForUnitBranch(final B2BCustomerModel employee, final CurrencyModel currency)
 	{
 		return getCostCentersForUnitBranch(employee, currency);
@@ -72,7 +80,7 @@ public class DefaultB2BCostCenterService implements B2BCostCenterService<B2BCost
 	 * @deprecated Since 4.4. Use {@link #getCostCentersForUnitBranch(B2BUnitModel, CurrencyModel)} instead
 	 */
 	@Override
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	public List<B2BCostCenterModel> findCostCentersForUnitBranch(final B2BUnitModel unit, final CurrencyModel currency)
 	{
 		return getCostCentersForUnitBranch(unit, currency);
@@ -90,7 +98,7 @@ public class DefaultB2BCostCenterService implements B2BCostCenterService<B2BCost
 	 * @deprecated Since 4.4.
 	 */
 	@Override
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	public List<B2BCostCenterModel> findCostCenters(final B2BUnitModel unit, final CurrencyModel currency)
 	{
 		return (List<B2BCostCenterModel>) CollectionUtils.select(unit.getCostCenters(), new Predicate()
@@ -109,7 +117,7 @@ public class DefaultB2BCostCenterService implements B2BCostCenterService<B2BCost
 	 *             {@link de.hybris.platform.b2b.services.B2BBudgetService#getCurrentBudgets(de.hybris.platform.b2b.model.B2BCostCenterModel)}
 	 */
 	@Override
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	public Collection<B2BBudgetModel> getCurrentBudgets(final B2BCostCenterModel costCenter)
 	{
 		final Set<B2BBudgetModel> b2bBudgets = new HashSet<B2BBudgetModel>();
@@ -131,7 +139,7 @@ public class DefaultB2BCostCenterService implements B2BCostCenterService<B2BCost
 	 * @deprecated Since 4.4. Use {@link #getAvailableCurrencies(UserModel)} instead
 	 */
 	@Override
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	public Set<CurrencyModel> findAvailableCurrencies(final UserModel user)
 	{
 		return getAvailableCurrencies(user);
@@ -155,7 +163,7 @@ public class DefaultB2BCostCenterService implements B2BCostCenterService<B2BCost
 	 * @deprecated Since 4.4. Use {@link #getAvailableCurrencies(B2BUnitModel)} instead
 	 */
 	@Override
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	public Set<CurrencyModel> findAvailableCurrencies(final B2BUnitModel unit)
 	{
 		return getAvailableCurrencies(unit);
@@ -166,19 +174,8 @@ public class DefaultB2BCostCenterService implements B2BCostCenterService<B2BCost
 	{
 
 		final Set<B2BUnitModel> branch = getB2bUnitService().getBranch(unit);
-		final Set<CurrencyModel> currencies = new HashSet<CurrencyModel>();
-		final List<B2BCostCenterModel> costCenters = new ArrayList<B2BCostCenterModel>();
 
-		for (final B2BUnitModel b2bUnitModel : branch)
-		{
-			costCenters.addAll(b2bUnitModel.getCostCenters());
-		}
-		for (final B2BCostCenterModel costCenter : costCenters)
-		{
-			currencies.add(costCenter.getCurrency());
-		}
-
-		return Collections.unmodifiableSet(currencies);
+		return Collections.unmodifiableSet((LinkedHashSet<CurrencyModel>) b2bCostCenterDao.findCurrenciesForAllCostCentersOfUnit(branch));
 	}
 
 	@Override
@@ -201,7 +198,7 @@ public class DefaultB2BCostCenterService implements B2BCostCenterService<B2BCost
 	 * @see de.hybris.platform.b2b.services.B2BCostCenterService#getB2BCostCenterForCode(java.lang.String)
 	 */
 	@Override
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	public B2BCostCenterModel getB2BCostCenterForCode(final String code)
 	{
 		return getB2bCostCenterDao().findByCode(code);
@@ -217,7 +214,7 @@ public class DefaultB2BCostCenterService implements B2BCostCenterService<B2BCost
 	 * @deprecated Since 4.4. Use {@link #getCostCenterForCode(String)} instead
 	 */
 	@Override
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	public B2BCostCenterModel findByCode(final String code)
 	{
 		return getCostCenterForCode(code);
@@ -238,7 +235,7 @@ public class DefaultB2BCostCenterService implements B2BCostCenterService<B2BCost
 	/**
 	 * @deprecated Since 6.0. Use {@link de.hybris.platform.b2b.services.B2BBudgetService#getB2BBudgets()}
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	@Override
 	public Set<B2BBudgetModel> getB2BBudgets()
 	{
@@ -248,7 +245,7 @@ public class DefaultB2BCostCenterService implements B2BCostCenterService<B2BCost
 	/**
 	 * @deprecated Since 6.0. Use {@link de.hybris.platform.b2b.services.B2BBudgetService#getB2BBudgetForCode(String)}
 	 */
-	@Deprecated(since = "6.0", forRemoval = true)
+	@Deprecated
 	@Override
 	public B2BBudgetModel getB2BBudgetForCode(final String code)
 	{

@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2b.process.approval.actions;
 
@@ -13,8 +20,6 @@ import de.hybris.platform.workflow.model.WorkflowActionModel;
 import de.hybris.platform.workflow.model.WorkflowDecisionModel;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
 
@@ -29,12 +34,10 @@ public abstract class B2BAbstractWorkflowAutomatedAction implements AutomatedWor
 	{
 		performAction(action);
 
-		final List<WorkflowDecisionModel> workflowDecisionList = (List<WorkflowDecisionModel>) action.getDecisions();
-		if (workflowDecisionList != null && !workflowDecisionList.isEmpty())
+		for (final WorkflowDecisionModel decision : action.getDecisions())
 		{
-			return workflowDecisionList.get(0);
+			return decision;
 		}
-
 		return null;
 	}
 
@@ -43,7 +46,7 @@ public abstract class B2BAbstractWorkflowAutomatedAction implements AutomatedWor
 	/**
 	 * Assigns the PermissionStatus to all the {@link B2BPermissionResultModel}s associated with a given order and are
 	 * assigned to the principal.
-	 *
+	 * 
 	 * @param order
 	 *           A b2c order
 	 * @param principalAssigned

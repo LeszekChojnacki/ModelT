@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2b.dao.impl;
 
@@ -28,10 +35,10 @@ import org.springframework.beans.factory.annotation.Required;
  * <p>
  * Just extend from this class providing the generated hybris Item class I and the Model class M.
  * </p>
- *
+ * 
  * @deprecated Since 4.4. User {@link DefaultGenericDao}
  */
-@Deprecated(since = "4.4", forRemoval = true)
+@Deprecated
 public abstract class GenericDao<M extends ItemModel> implements Dao
 {
 	private final Class<M> modelClass;
@@ -49,7 +56,7 @@ public abstract class GenericDao<M extends ItemModel> implements Dao
 
 	/**
 	 * Finds all models.
-	 *
+	 * 
 	 * @param count
 	 *           The max. number of models returned.
 	 * @param start
@@ -66,7 +73,7 @@ public abstract class GenericDao<M extends ItemModel> implements Dao
 	 * Finds a model matching the given attribute. If the query returns more than one model a
 	 * {@link AmbiguousIdentifierException} is thrown. If no model was found <code>null</code> is returned.
 	 * <p/>
-	 *
+	 * 
 	 * @param attributeName
 	 *           The name of the attribute.
 	 * @param attributeValue
@@ -85,7 +92,7 @@ public abstract class GenericDao<M extends ItemModel> implements Dao
 	 * Finds a model matching the given attributes. If the query returns more than one model a
 	 * {@link AmbiguousIdentifierException} is thrown. If no model was found <code>null</code> is returned.
 	 * <p/>
-	 *
+	 * 
 	 * @param attribs
 	 *           A map of attribute names and values
 	 * @return A list of models.
@@ -102,7 +109,7 @@ public abstract class GenericDao<M extends ItemModel> implements Dao
 	 * Finds a model matching the given attribute. If the query returns more than one model the first model is returned.
 	 * If no model was found <code>null</code> is returned.
 	 * <p/>
-	 *
+	 * 
 	 * @param attributeName
 	 *           The name of the attribute.
 	 * @param attributeValue
@@ -123,7 +130,7 @@ public abstract class GenericDao<M extends ItemModel> implements Dao
 	 * Finds a model matching the given attributes. If the query returns more than one model the first model is returned.
 	 * If no model was found <code>null</code> is returned.
 	 * <p/>
-	 *
+	 * 
 	 * @param attribs
 	 *           A map of attribute names and values
 	 * @param orderBy
@@ -146,7 +153,7 @@ public abstract class GenericDao<M extends ItemModel> implements Dao
 	 * <p/>
 	 * Finds models matching the given attribute.
 	 * <p/>
-	 *
+	 * 
 	 * @param attributeName
 	 *           The name of the attribute.
 	 * @param attributeValue
@@ -162,7 +169,7 @@ public abstract class GenericDao<M extends ItemModel> implements Dao
 	 * <p/>
 	 * Finds models matching the given attribute.
 	 * <p/>
-	 *
+	 * 
 	 * @param attributeName
 	 *           The name of the attribute.
 	 * @param attributeValue
@@ -182,7 +189,7 @@ public abstract class GenericDao<M extends ItemModel> implements Dao
 	 * <p/>
 	 * Finds models matching the given attribute.
 	 * <p/>
-	 *
+	 * 
 	 * @param attributeName
 	 *           The name of the attribute.
 	 * @param attributeValue
@@ -207,7 +214,7 @@ public abstract class GenericDao<M extends ItemModel> implements Dao
 	 * <p/>
 	 * Finds models matching the given attribute map.
 	 * <p/>
-	 *
+	 * 
 	 * @param attribs
 	 *           Map providing attribute names and values that will be included in the <code>where</code> clause or null.
 	 *           The value can be an {@link ItemModel} .
@@ -222,7 +229,7 @@ public abstract class GenericDao<M extends ItemModel> implements Dao
 	 * <p/>
 	 * Finds models matching the given attribute map.
 	 * <p/>
-	 *
+	 * 
 	 * @param attribs
 	 *           Map providing attribute names and values that will be included in the <code>where</code> clause or null.
 	 *           The value can be an {@link ItemModel}.
@@ -241,7 +248,7 @@ public abstract class GenericDao<M extends ItemModel> implements Dao
 	 * <p/>
 	 * Finds models matching the given attribute map.
 	 * <p/>
-	 *
+	 * 
 	 * @param attribs
 	 *           Map providing attribute names and values that will be included in the <code>where</code> clause or null.
 	 *           The value can be an {@link ItemModel}.
@@ -265,7 +272,7 @@ public abstract class GenericDao<M extends ItemModel> implements Dao
 	 * <p/>
 	 * Finds models matching the given attribute map.
 	 * <p/>
-	 *
+	 * 
 	 * @param attribs
 	 *           Map providing attribute names and values that will be included in the <code>where</code> clause or null.
 	 *           The value can be an {@link ItemModel}.
@@ -292,7 +299,7 @@ public abstract class GenericDao<M extends ItemModel> implements Dao
 	 * <p/>
 	 * Counts models matching the given attribute map.
 	 * <p/>
-	 *
+	 * 
 	 * @param attribs
 	 *           Map providing attribute names and values that will be included in the <code>where</code> clause or null.
 	 *           The value can be an {@link ItemModel} .
@@ -308,7 +315,7 @@ public abstract class GenericDao<M extends ItemModel> implements Dao
 
 	/**
 	 * Persists the model.
-	 *
+	 * 
 	 * @param model
 	 *           the model to save
 	 * @throws de.hybris.platform.servicelayer.exceptions.ModelSavingException
@@ -322,7 +329,7 @@ public abstract class GenericDao<M extends ItemModel> implements Dao
 
 	/**
 	 * Save all.
-	 *
+	 * 
 	 * @param models
 	 *           the models
 	 */
@@ -334,7 +341,7 @@ public abstract class GenericDao<M extends ItemModel> implements Dao
 
 	/**
 	 * Copies dirty attributes from <code>source</code> model to the <code>target</code>.
-	 *
+	 * 
 	 * @param source
 	 *           A model to read dirty attributes from.
 	 * @param target
@@ -351,7 +358,7 @@ public abstract class GenericDao<M extends ItemModel> implements Dao
 	 * {@link ItemModel} type. Note that both models are detached from the {@link ModelContext} when using this method
 	 * you should explicitly call {@link ModelService#attach(Object)}
 	 * <p/>
-	 *
+	 * 
 	 * <pre>
 	 * The following attributes will not be copied.
 	 * Item.CREATION_TIME
@@ -364,9 +371,9 @@ public abstract class GenericDao<M extends ItemModel> implements Dao
 	 * synchronizedCopies
 	 * savedValues
 	 * valueHistory
-	 *
+	 * 
 	 * </pre>
-	 *
+	 * 
 	 * @param model
 	 *           A model to copy
 	 * @param excludeAttributesFromCopy

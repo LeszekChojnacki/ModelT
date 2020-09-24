@@ -1,5 +1,12 @@
 # -----------------------------------------------------------------------
-# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
 # ---- Extension: b2bcommerce ---- Type: B2BUnit2ApproverGroup ----
 "#% impex.setTargetFile( ""B2BUnit2ApproverGroup.csv"" );"
@@ -53,9 +60,8 @@ insert_update B2BCostCenter;&Item;B2BBudget(code);B2BUnit(uid);code[unique=true,
 
 # ---- Extension: b2bcommerce ---- Type: B2BEmployee ----
 "#% impex.setTargetFile( ""B2BEmployee.csv"" );"
-insert_update B2BEmployee;&Item;B2BApprovers(uid);B2BUnit(uid);Europe1PriceFactory_UDG(code,itemtype(code));Europe1PriceFactory_UPG(code,itemtype(code));Europe1PriceFactory_UTG(code,itemtype(code));addresses(&Item);carts(code);creationtime[forceWrite=false,dateformat=dd.MM.yyyy hh:mm:ss];defaultPaymentAddress(&Item);defaultShipmentAddress(&Item);description;domain;europe1Discounts(&Item);loginDisabled[allownull=true];name;orders(code,versionID);owner(&Item);paymentInfos(&Item);sessionCurrency(isocode);sessionLanguage(isocode);uid[unique=true,allownull=true];userprofile(&Item)
+insert_update B2BEmployee;&Item;B2BApprovers(uid);B2BUnit(uid);Europe1PriceFactory_UDG(code,itemtype(code));Europe1PriceFactory_UPG(code,itemtype(code));Europe1PriceFactory_UTG(code,itemtype(code));addresses(&Item);carts(code);creationtime[forceWrite=false,dateformat=dd.MM.yyyy hh:mm:ss];defaultPaymentAddress(&Item);defaultShipmentAddress(&Item);description;domain;europe1Discounts(&Item);loginDisabled[allownull=true];name;orders(code,versionID);owner(&Item);password;passwordAnswer;passwordQuestion;paymentInfos(&Item);sessionCurrency(isocode);sessionLanguage(isocode);uid[unique=true,allownull=true];userprofile(&Item)
 "#% impex.exportItems( ""B2BEmployee"" , false );"
-
 
 # ---- Extension: core ---- Type: UserGroup ----
 "#% impex.setTargetFile( ""UserGroup.csv"" );"

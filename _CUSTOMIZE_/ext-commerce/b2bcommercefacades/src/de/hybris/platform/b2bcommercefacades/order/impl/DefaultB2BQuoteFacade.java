@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2bcommercefacades.order.impl;
 
@@ -21,7 +28,7 @@ import org.springframework.beans.factory.annotation.Required;
  * @deprecated Since 6.3. Use quote functionality from commerce instead ({@link QuoteFacade}).<br/>
  *             Default implementation of the {@link B2BQuoteFacade} interface.
  */
-@Deprecated(since = "6.3", forRemoval = true)
+@Deprecated
 public class DefaultB2BQuoteFacade extends DefaultOrderFacade implements B2BQuoteFacade
 {
 	private B2BQuoteService quoteService;

@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2b.dao;
 
@@ -47,37 +54,37 @@ public interface B2BOrderDao
 	/**
 	 * @deprecated Since 6.3. Please see quote functionality from commerce.
 	 *
-	 *             Find the orders with a status of {@link OrderStatus#PENDING_QUOTE} for a user.
+	 * Find the orders with a status of {@link OrderStatus#PENDING_QUOTE} for a user.
 	 *
 	 * @param user
 	 *           the user
 	 * @return List of orders
 	 */
-	@Deprecated(since = "6.3", forRemoval = true)
+	@Deprecated
 	List<OrderModel> findPendingQuoteOrders(final UserModel user);
 
 	/**
 	 * @deprecated Since 6.3. Please see quote functionality from commerce.
 	 *
-	 *             Find the orders with a status of {@link OrderStatus#APPROVED_QUOTE} for a user.
+	 * Find the orders with a status of {@link OrderStatus#APPROVED_QUOTE} for a user.
 	 *
 	 * @param user
 	 *           the user
 	 * @return List of orders
 	 */
-	@Deprecated(since = "6.3", forRemoval = true)
+	@Deprecated
 	List<OrderModel> findApprovedQuoteOrders(final UserModel user);
 
 	/**
 	 * @deprecated Since 6.3. Please see quote functionality from commerce.
 	 *
-	 *             Find the orders with a status of {@link OrderStatus#REJECTED_QUOTE} for a user.
+	 * Find the orders with a status of {@link OrderStatus#REJECTED_QUOTE} for a user.
 	 *
 	 * @param user
 	 *           the user
 	 * @return List of orders
 	 */
-	@Deprecated(since = "6.3", forRemoval = true)
+	@Deprecated
 	List<OrderModel> findRejectedQuoteOrders(final UserModel user);
 
 	/**
@@ -130,7 +137,7 @@ public interface B2BOrderDao
 	 * @return the list
 	 * @deprecated Since 4.4. Use {@link #findOrdersApprovedByDateRange(UserModel,Date,Date)} instead
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	List<OrderModel> findOrdersApprovedForDateRange(final UserModel user, final Date startDate, final Date endDate);
 
 	/**
@@ -154,7 +161,7 @@ public interface B2BOrderDao
 	 * @return A list of cronjobs responsible for replenisment of users cart.
 	 * @deprecated Since 6.0. Use {@link DefaultCartToOrderCronJobModelDao#findCartToOrderCronJobs(UserModel)} instead
 	 */
-	@Deprecated(since = "6.0", forRemoval = true)
+	@Deprecated
 	List<CartToOrderCronJobModel> findCartToOrderCronJobs(final UserModel user);
 
 	/**
@@ -165,7 +172,7 @@ public interface B2BOrderDao
 	 * @return the cart to order cron job model
 	 * @deprecated Since 6.0. Use {@link DefaultCartToOrderCronJobModelDao#findCartToOrderCronJob(String)} instead
 	 */
-	@Deprecated(since = "6.0", forRemoval = true)
+	@Deprecated
 	CartToOrderCronJobModel findCartToOrderModel(final String code);
 
 	/**
@@ -204,10 +211,9 @@ public interface B2BOrderDao
 	 * @param endDate
 	 * @param currency
 	 * @return List
-	 * @deprecated Since 4.4. Use {@link #findOrderTotalsByDateRangeAndCurrency(B2BUnitModel,Date,Date,CurrencyModel)}
-	 *             instead
+	 * @deprecated Since 4.4. Use {@link #findOrderTotalsByDateRangeAndCurrency(B2BUnitModel,Date,Date,CurrencyModel)} instead
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	Double findOrderTotalsForDateRangeByCurrency(final B2BUnitModel unitModel, final Date startDate, final Date endDate,
 			final CurrencyModel currency);
 

@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2b.dao.impl;
 
@@ -42,7 +49,7 @@ public class DefaultB2BBookingLineEntryDao extends DefaultGenericDao<B2BBookingL
 	/**
 	 * @deprecated Since 4.4. Use {@link #findTotalCostByCostCenterAndDate(B2BCostCenterModel,Date,Date)} instead
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	@Override
 	public Double getTotalCost(final B2BCostCenterModel costCenter, final Date startDate, final Date endDate)
 	{
@@ -72,7 +79,7 @@ public class DefaultB2BBookingLineEntryDao extends DefaultGenericDao<B2BBookingL
 	/**
 	 * @deprecated Since 4.4. Use findOpenBookingLineEntries(List, Date)} instead
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	@Override
 	public List<B2BBookingLineEntryModel> getOpenBookingLineEntries(final List<B2BCostCenterModel> costCenters,
 			final Date bookingDate)
@@ -81,8 +88,8 @@ public class DefaultB2BBookingLineEntryDao extends DefaultGenericDao<B2BBookingL
 	}
 
 	@Override
-	public List<B2BBookingLineEntryModel> findOpenBookingLineEntriesByCostCenterAndDate(final List<B2BCostCenterModel> costCenters,
-			final Date bookingDate)
+	public List<B2BBookingLineEntryModel> findOpenBookingLineEntriesByCostCenterAndDate(
+			final List<B2BCostCenterModel> costCenters, final Date bookingDate)
 	{
 		final Map<String, Object> attr = new HashMap<String, Object>();
 		attr.put(B2BBookingLineEntryModel.COSTCENTER, costCenters);

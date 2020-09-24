@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2bcommercefacades.company.impl;
 
@@ -7,7 +14,6 @@ import static de.hybris.platform.servicelayer.util.ServicesUtil.validateParamete
 import static de.hybris.platform.servicelayer.util.ServicesUtil.validateParameterNotNullStandardMessage;
 
 import de.hybris.platform.b2b.company.B2BCommerceUnitService;
-import de.hybris.platform.b2b.jalo.B2BCustomer;
 import de.hybris.platform.b2b.model.B2BCustomerModel;
 import de.hybris.platform.b2b.model.B2BUnitModel;
 import de.hybris.platform.b2b.services.B2BUnitService;
@@ -26,8 +32,6 @@ import de.hybris.platform.core.model.user.AddressModel;
 import de.hybris.platform.core.model.user.UserModel;
 import de.hybris.platform.servicelayer.config.ConfigurationService;
 import de.hybris.platform.servicelayer.dto.converter.Converter;
-import de.hybris.platform.servicelayer.exceptions.ClassMismatchException;
-import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 import de.hybris.platform.servicelayer.model.ModelService;
 import de.hybris.platform.servicelayer.session.SessionService;
 import de.hybris.platform.servicelayer.user.UserService;
@@ -40,7 +44,6 @@ import java.util.Set;
 
 import org.apache.commons.beanutils.BeanPropertyValueEqualsPredicate;
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
 
 
@@ -49,8 +52,6 @@ import org.springframework.beans.factory.annotation.Required;
  */
 public class DefaultB2BUnitFacade implements B2BUnitFacade
 {
-
-	private static final Logger LOG = Logger.getLogger(DefaultB2BUnitFacade.class);
 
 	private ModelService modelService;
 	private SessionService sessionService;
@@ -130,17 +131,10 @@ public class DefaultB2BUnitFacade implements B2BUnitFacade
 	@Override
 	public B2BUnitNodeData getParentUnitNode()
 	{
-		final UserModel currentUser = this.getUserService().getCurrentUser();
-		if (currentUser instanceof B2BCustomerModel)
-		{
-			final B2BUnitModel parentUnit = getB2BUnitService().getParent((B2BCustomerModel) currentUser);
-			return (B2BUnitNodeData) CollectionUtils.find(getBranchNodes(),
-					new BeanPropertyValueEqualsPredicate("id", parentUnit.getUid()));
-		}
-		else
-		{
-			throw new ClassMismatchException(B2BCustomer.class.getSimpleName(), currentUser.getClass().getSimpleName());
-		}
+		final B2BCustomerModel currentUser = (B2BCustomerModel) this.getUserService().getCurrentUser();
+		final B2BUnitModel parentUnit = getB2BUnitService().getParent(currentUser);
+		return (B2BUnitNodeData) CollectionUtils.find(getBranchNodes(),
+				new BeanPropertyValueEqualsPredicate("id", parentUnit.getUid()));
 	}
 
 	@Override
@@ -211,18 +205,17 @@ public class DefaultB2BUnitFacade implements B2BUnitFacade
 	@Override
 	public void updateOrCreateBusinessUnit(final String originalUid, final B2BUnitData unit)
 	{
-		B2BUnitModel unitModel = null;
+		B2BUnitModel unitModel = this.getB2BUnitService().getUnitForUid(originalUid);
 		B2BUnitModel parentUnitBefore = null;
 		B2BUnitModel parentUnitAfter = null;
 		boolean newModel = false;
-		if (!doesUnitExist(originalUid))
+		if (unitModel == null)
 		{
 			newModel = true;
 			unitModel = getModelService().create(B2BUnitModel.class);
 		}
 		else
 		{
-			unitModel = this.getB2BUnitService().getUnitForUid(originalUid);
 			parentUnitBefore = getB2BCommerceUnitService().getParentUnit(unitModel);
 		}
 
@@ -267,20 +260,6 @@ public class DefaultB2BUnitFacade implements B2BUnitFacade
 		final B2BUnitData unit = getUnitForUid(uid);
 		validateParameterNotNull(unit, String.format("No unit found for uid %s", uid));
 		return unit;
-	}
-
-	protected boolean doesUnitExist(final String unitUid)
-	{
-		boolean exists = false;
-		try
-		{
-			exists = getUserService().getUserGroupForUID(unitUid, B2BUnitModel.class) != null;
-		}
-		catch (final UnknownIdentifierException e)
-		{
-			LOG.info(String.format("Unit for uid [%s] does not yet exist.", unitUid));
-		}
-		return exists;
 	}
 
 	protected ModelService getModelService()

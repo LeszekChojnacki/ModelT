@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2b.services;
 
@@ -37,7 +44,7 @@ public interface B2BUnitService<T extends CompanyModel, U extends UserModel>
 	 * @return A list of all units within an organization.
 	 * @deprecated Since 6.0. Use {@link #getBranch(T)} instead
 	 */
-	@Deprecated(since = "6.0", forRemoval = true)
+	@Deprecated
 	Set<T> getAllUnitsOfOrganization(T unit);
 
 	/**
@@ -96,7 +103,7 @@ public interface B2BUnitService<T extends CompanyModel, U extends UserModel>
 	 * @return the b2 b unit model
 	 * @deprecated Since 4.4. Use {@link #getUnitForUid(String)} instead
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	T findUnitByUid(String uid);
 
 	/**
@@ -200,7 +207,7 @@ public interface B2BUnitService<T extends CompanyModel, U extends UserModel>
 	 * @deprecated Since 6.0. Use
 	 *             {@link #getUsersOfUserGroup(de.hybris.platform.b2b.model.B2BUnitModel, String, boolean)}
 	 */
-	@Deprecated(since = "6.0", forRemoval = true)
+	@Deprecated
 	Collection<U> getUsersOfUserGroup(final T unit, final String userGroupId);
 
 	/**
@@ -226,20 +233,16 @@ public interface B2BUnitService<T extends CompanyModel, U extends UserModel>
 	 * @return approval process code
 	 * @deprecated Since 4.4. Use {@link #getApprovalProcessCodeForUnit(CompanyModel)} instead
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	String findApprovalProcessCodeForUnit(final T unit);
 
 	/**
 	 * Get approval process code from unit, checking parent units up the organization tree up to the root unit if process
 	 * is not set in the <code>unit</code>
 	 *
-	 * @deprecated since 1905. Please use
-	 *             {@link de.hybris.platform.b2b.process.approval.services.impl.DefaultB2BApprovalProcessService.getApprovalProcessCodeForUnit(B2BUnitModel)}
-	 *             instead.
 	 * @param unit
 	 * @return approval process code
 	 */
-	@Deprecated(since = "1905", forRemoval = true)
 	String getApprovalProcessCodeForUnit(final T unit);
 
 	/**
@@ -248,7 +251,7 @@ public interface B2BUnitService<T extends CompanyModel, U extends UserModel>
 	 * @return List of approval process codes
 	 * @deprecated Since 6.0. Use {@link #getAllProcessDefinitionsNames()}
 	 */
-	@Deprecated(since = "6.0", forRemoval = true)
+	@Deprecated
 	List<String> getAllApprovalProcesses();
 
 	/**
@@ -259,7 +262,7 @@ public interface B2BUnitService<T extends CompanyModel, U extends UserModel>
 	 * @return the account manager
 	 * @deprecated Since 4.4. Use {@link #getAccountManagerForUnit(CompanyModel)} instead
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	EmployeeModel findAccountManagerForUnit(final T unit);
 
 	/**
@@ -281,7 +284,7 @@ public interface B2BUnitService<T extends CompanyModel, U extends UserModel>
 	 *
 	 * @deprecated Since 4.4. Use {@link #getUnitWithCreditLimit(CompanyModel)} instead
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	T findUnitWithCreditLimit(final T unit, final CurrencyModel currency);
 
 	/**

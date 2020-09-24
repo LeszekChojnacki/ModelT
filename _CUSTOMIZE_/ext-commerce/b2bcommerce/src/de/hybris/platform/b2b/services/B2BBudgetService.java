@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2b.services;
 
@@ -50,14 +57,14 @@ public interface B2BBudgetService<B extends B2BBudgetModel, U extends UserModel>
 	Collection<B> getCurrentBudgets(final B2BCostCenterModel costCenter);
 
 	/**
-	 * @deprecated Since 6.0. Use {@link #getB2BBudgetForCode(String)} directly (it will return null if budget does not
-	 *             exist). Checks whether the budget exists regardless of visibility constraints
+	 * @deprecated Since 6.0. Use {@link #getB2BBudgetForCode(String)} directly (it will return null if budget does not exist).
+	 *             Checks whether the budget exists regardless of visibility constraints
 	 *
 	 * @param code
 	 *           the budget's code
 	 * @return true is budget with this code exists
 	 */
-	@Deprecated(since = "6.0", forRemoval = true)
+	@Deprecated
 	boolean isBudgetExisting(final String code);
 
 	/**

@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
- Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
--->
 <!-- The XML Schema Allurent generates to validate XML data model representations 
 	requires a custom binding definition in order to be passed through JAXB's 
 	XJC tool. The issue stems from the implicit inheritance in the data model 

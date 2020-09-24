@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2b.services;
 
@@ -60,7 +67,7 @@ public interface B2BCustomerService<U, C>
 	 * @deprecated Since 4.5. Use
 	 *             {@link B2BCustomerService#addMember(de.hybris.platform.core.model.security.PrincipalModel, de.hybris.platform.core.model.security.PrincipalGroupModel)}
 	 */
-	@Deprecated(since = "4.5", forRemoval = true)
+	@Deprecated
 	void setParentB2BUnit(final U member, final C company);
 
 	/**
@@ -77,7 +84,7 @@ public interface B2BCustomerService<U, C>
 	 * @return true if principal exists with this uid.
 	 * @deprecated Since 4.4. Use {@link de.hybris.platform.servicelayer.user.UserService#isUserExisting(String)}
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	boolean principalExists(final String uid);
 
 	/**
@@ -89,7 +96,7 @@ public interface B2BCustomerService<U, C>
 
 	/**
 	 * Gets all b2b user groups
-	 *
+	 * 
 	 * @return the {@link List} of {@link B2BUserGroupModel}
 	 */
 	List<B2BUserGroupModel> getAllB2BUserGroups();

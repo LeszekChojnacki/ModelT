@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2b.services;
 
@@ -28,7 +35,7 @@ public interface B2BItemService
 	 *           the code
 	 * @return the b2 b budget model
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	abstract B2BBudgetModel findB2BBudgetByCode(final String code);
 
 	/**
@@ -38,27 +45,25 @@ public interface B2BItemService
 	 *           the code
 	 * @return the b2b customer model
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	abstract B2BCustomerModel findB2BCustomerByCode(final String code);
 
 	/**
-	 * @deprecated Since 4.4. Use
-	 *             {@link de.hybris.platform.servicelayer.user.UserService#getUserGroupForUID(String, Class)}
+	 * @deprecated Since 4.4. Use {@link de.hybris.platform.servicelayer.user.UserService#getUserGroupForUID(String, Class)}
 	 * @param code
 	 *           the group code
 	 * @return the {@link B2BUserGroupModel}
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	abstract B2BUserGroupModel findB2BUserGroupByCode(final String code);
 
 	/**
-	 * @deprecated Since 4.4. Use
-	 *             {@link de.hybris.platform.servicelayer.user.UserService#getUserGroupForUID(String, Class)}
+	 * @deprecated Since 4.4. Use {@link de.hybris.platform.servicelayer.user.UserService#getUserGroupForUID(String, Class)}
 	 * @param code
 	 *           the group code
 	 * @return the {@link PrincipalGroupModel}
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	abstract PrincipalGroupModel findPrincipalGroupByCode(final String code);
 
 	/**
@@ -68,35 +73,35 @@ public interface B2BItemService
 	 *           the code
 	 * @return the b2b cost center model
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	abstract B2BCostCenterModel findB2BCostCenterByCode(final String code);
 
 	/**
 	 * @deprecated Since 4.4. use {@link B2BCostCenterService#getB2BBudgets()}
 	 * @return All {@link B2BBudgetModel} to which the user has visibility.
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	abstract Set<B2BBudgetModel> findAllB2BBudgets();
 
 	/**
 	 * @deprecated Since 4.4. Use {@link de.hybris.platform.b2b.services.B2BCustomerService#getAllUsers()}
 	 * @return the {@link Set} of {@link B2BCustomerModel}
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	abstract Set<B2BCustomerModel> findAllApprovers();
 
 	/**
 	 * @deprecated Since 4.4. {@link de.hybris.platform.b2b.services.B2BCustomerService#getAllB2BUserGroups()}
 	 * @return the {@link Set} of {@link B2BUserGroupModel}
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	abstract Set<B2BUserGroupModel> findAllB2BUserGroups();
 
 	/**
 	 * @deprecated Since 4.4.
 	 * @return list of Groups which grant rights to members.
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	abstract List<PrincipalGroupModel> findAllRoleGroups();
 
 
@@ -105,18 +110,18 @@ public interface B2BItemService
 	 * @param model
 	 * @return list of Models
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	abstract <M extends ItemModel> List<M> findAllItems(final Class<M> model);
 
 	/**
 	 *
-	 * @deprecated Since 4.4. Use {@link de.hybris.platform.b2b.services.B2BBudgetService#isBudgetExisting(String)}
-	 *             Checks whether the budget exists regardless of visibility constraints
+	 * @deprecated Since 4.4. Use {@link de.hybris.platform.b2b.services.B2BBudgetService#isBudgetExisting(String)} Checks whether
+	 *             the budget exists regardless of visibility constraints
 	 *
 	 * @param code
 	 * @return true is budget with this code exists
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	boolean budgetExists(final String code);
 
 	/**
@@ -126,7 +131,7 @@ public interface B2BItemService
 	 * @param code
 	 * @return true is budget with this code exists
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	boolean costCenterExists(final String code);
 
 }

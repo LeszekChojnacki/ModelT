@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2bapprovalprocessfacades.company;
 
@@ -7,7 +14,6 @@ import de.hybris.platform.b2b.enums.B2BPermissionTypeEnum;
 import de.hybris.platform.b2bapprovalprocessfacades.company.data.B2BPermissionData;
 import de.hybris.platform.b2bapprovalprocessfacades.company.data.B2BPermissionTypeData;
 import de.hybris.platform.b2bcommercefacades.company.data.B2BSelectionData;
-import de.hybris.platform.commerceservices.customer.DuplicateUidException;
 import de.hybris.platform.commerceservices.search.pagedata.PageableData;
 import de.hybris.platform.commerceservices.search.pagedata.SearchPageData;
 
@@ -79,7 +85,7 @@ public interface B2BPermissionFacade
 	 * @param b2BPermissionData
 	 *           {@link B2BPermissionData} object holding the data for the permission to be created.
 	 */
-	void addPermission(B2BPermissionData b2BPermissionData) throws DuplicateUidException;
+	void addPermission(B2BPermissionData b2BPermissionData);
 
 	/**
 	 * Gets the list of permissions of the customers.

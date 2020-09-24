@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2b.services.impl;
 
@@ -102,7 +109,7 @@ public class DefaultB2BPermissionService implements B2BPermissionService<B2BCust
 	 * @deprecated As of hybris 4.4, replaced by
 	 *             {@link #getApproversForOpenPermissions(AbstractOrderModel, B2BCustomerModel, Collection)}
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	@Override
 	public Set<B2BPermissionResultModel> findApproversForOpenPermissions(final AbstractOrderModel order,
 			final B2BCustomerModel employee, final Collection<B2BPermissionResultModel> openPermissions)
@@ -308,7 +315,7 @@ public class DefaultB2BPermissionService implements B2BPermissionService<B2BCust
 	 * @deprecated As of hybris 4.4, replaced by {@link #getB2BPermissionForCode(String)}
 	 */
 	@Override
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	public B2BPermissionModel findB2BPermissionByCode(final String code)
 	{
 		return getB2BPermissionForCode(code);
@@ -324,7 +331,7 @@ public class DefaultB2BPermissionService implements B2BPermissionService<B2BCust
 	 * @deprecated As of hybris 4.4, replaced by {@link #getAllB2BPermissions()}
 	 */
 	@Override
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	public Set<B2BPermissionModel> findAllB2BPermissions()
 	{
 		return getAllB2BPermissions();
@@ -496,7 +503,7 @@ public class DefaultB2BPermissionService implements B2BPermissionService<B2BCust
 	 * @deprecated As of hybris 4.4, replaced by {@link #getAllB2BPermissionTypes()}
 	 */
 	@Override
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	public List<String> findAllB2BPermissionTypes()
 	{
 		return getAllB2BPermissionTypes();

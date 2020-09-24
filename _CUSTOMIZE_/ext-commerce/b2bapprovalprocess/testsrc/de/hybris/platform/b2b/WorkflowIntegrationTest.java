@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2b;
 
@@ -37,8 +44,8 @@ public abstract class WorkflowIntegrationTest extends B2BIntegrationTest
 			final BusinessProcessModel bp = businessProcessService.getProcess(businessProcessCode);
 			modelService.refresh(bp); // without refresh this object is stale
 
-			final String currentAction = bp.getCurrentTasks() != null && bp.getCurrentTasks().iterator().hasNext()
-					? bp.getCurrentTasks().iterator().next().getAction() : null;
+			final String currentAction = bp.getCurrentTasks() != null && bp.getCurrentTasks().iterator().hasNext() ? bp
+					.getCurrentTasks().iterator().next().getAction() : null;
 			if (StringUtils.equals(actionCode, currentAction))
 			{
 				return true;
@@ -46,12 +53,9 @@ public abstract class WorkflowIntegrationTest extends B2BIntegrationTest
 
 			if (System.currentTimeMillis() - start > maxWait)
 			{
-				throw new InterruptedException(
-						String.format(
-								"BusinessProcess %s [%s] did not go into a specified action %s, " + "current action %s, "
-										+ "waited for %s ",
-								bp.getCode(), bp.getProcessState(), actionCode, currentAction,
-								Utilities.formatTime(System.currentTimeMillis() - start)));
+				throw new InterruptedException(String.format("BusinessProcess %s [%s] did not go into a specified action %s, "
+						+ "current action %s, " + "waited for %s ", bp.getCode(), bp.getProcessState(), actionCode, currentAction,
+						Utilities.formatTime(System.currentTimeMillis() - start)));
 			}
 			else
 			{
@@ -80,8 +84,8 @@ public abstract class WorkflowIntegrationTest extends B2BIntegrationTest
 		while (true)
 		{
 			final B2BApprovalProcessModel bp = businessProcessService.getProcess(businessProcessCode);
-			final String currentAction = bp.getCurrentTasks() != null && bp.getCurrentTasks().iterator().hasNext()
-					? bp.getCurrentTasks().iterator().next().getAction() : null;
+			final String currentAction = bp.getCurrentTasks() != null && bp.getCurrentTasks().iterator().hasNext() ? bp
+					.getCurrentTasks().iterator().next().getAction() : null;
 			modelService.refresh(bp); // without refresh this object is stale
 
 			if (ProcessState.SUCCEEDED.getCode().equals(bp.getProcessState().getCode())
@@ -156,7 +160,7 @@ public abstract class WorkflowIntegrationTest extends B2BIntegrationTest
 		return businessProcessModel;
 	}
 
-	@Deprecated(since = "4.6", forRemoval = true)
+	@Deprecated
 	/**
 	 * @deprecated This uses jalo workflow decision to test workflows decided upon via hmc
 	 */

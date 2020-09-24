@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2b.strategies.impl;
 
@@ -44,7 +51,7 @@ public abstract class AbstractPermissionEvaluationStrategy<P extends B2BPermissi
 	 * @return A Collection of permissions.
 	 * @deprecated Since 4.4. Use {@link #getTypesToEvaluate}
 	 */
-	@Deprecated(since = "4.4", forRemoval = true)
+	@Deprecated
 	public Set<P> getPermissions(final B2BCustomerModel customer)
 	{
 		final Collection<B2BUserGroupModel> permissionGroups = CollectionUtils.select(customer.getPermissionGroups(),
@@ -105,8 +112,8 @@ public abstract class AbstractPermissionEvaluationStrategy<P extends B2BPermissi
 
 	protected BigDecimal getOrderTotal(final AbstractOrderModel order)
 	{
-		return this.toMoney(new Double(
-				order.getTotalPrice().doubleValue() + (order.getNet().booleanValue() ? order.getTotalTax().doubleValue() : 0)));
+		return this.toMoney(new Double(order.getTotalPrice().doubleValue()
+				+ (order.getNet().booleanValue() ? order.getTotalTax().doubleValue() : 0)));
 	}
 
 

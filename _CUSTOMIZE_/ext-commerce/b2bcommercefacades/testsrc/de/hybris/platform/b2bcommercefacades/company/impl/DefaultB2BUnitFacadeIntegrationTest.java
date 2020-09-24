@@ -1,5 +1,12 @@
 /*
- * Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
  */
 package de.hybris.platform.b2bcommercefacades.company.impl;
 
@@ -22,9 +29,7 @@ import de.hybris.platform.commerceservices.model.OrgUnitModel;
 import de.hybris.platform.commerceservices.search.pagedata.PageableData;
 import de.hybris.platform.commerceservices.search.pagedata.SearchPageData;
 import de.hybris.platform.core.model.user.AddressModel;
-import de.hybris.platform.core.model.user.UserModel;
 import de.hybris.platform.impex.jalo.ImpExException;
-import de.hybris.platform.servicelayer.exceptions.ClassMismatchException;
 import de.hybris.platform.servicelayer.user.UserService;
 
 import java.util.List;
@@ -33,8 +38,7 @@ import javax.annotation.Resource;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.mockito.Mockito;
-import org.mockito.Spy;
+
 
 /**
  * Integration tests for {@link DefaultB2BUnitFacade}.
@@ -48,7 +52,6 @@ public class DefaultB2BUnitFacadeIntegrationTest extends AbstractCommerceOrgInte
 	private static final String UNIT_ADRESSES_ARE_NULL_MSG = "Unit adresses are null.";
 	private static final String UNIT_ADRESSES_ARE_NOT_NULL_MSG = "Unit adresses are not null.";
 	private static final String UNIT_IS_NULL_MSG = "Unit is null.";
-	private static final String UNIT_NODE_IS_NULL = "Unit Node is null.";
 
 	/**
 	 * {@link PageableData} object, getting the <i>first result page</i> with <i>page size 10</i> and <i>sort by
@@ -64,6 +67,7 @@ public class DefaultB2BUnitFacadeIntegrationTest extends AbstractCommerceOrgInte
 
 	@Resource
 	private UserService userService;
+
 
 	@Test
 	public void testGetPagedCustomersForUnit()
@@ -303,50 +307,6 @@ public class DefaultB2BUnitFacadeIntegrationTest extends AbstractCommerceOrgInte
 		assertEquals("Unexpected unit name.", "Updated Unit", updatedUnit.getName());
 	}
 
-	@Test
-	public void testGetParentUnit()
-	{
-		final B2BUnitData parentUnit = b2bUnitFacade.getParentUnit();
-		assertNotNull("Parent unit is null", parentUnit);
-		assertEquals("Unexpected parent unit returned", "DC", parentUnit.getUid());
-	}
-
-	@Test
-	public void testGetParentUnitNode()
-	{
-		//first, test normal behavior
-		try {
-			final B2BUnitNodeData nodeData = b2bUnitFacade.getParentUnitNode();
-			if(nodeData == null) {
-				Assert.fail(UNIT_NODE_IS_NULL);
-			}
-		}
-		catch (final ClassMismatchException e)
-		{
-			Assert.fail("Method B2BUnitFacade::getParentUnitNode should not throw a ClassMistmatchException.");
-		}
-
-		//afterwards, test proper error handling
-		final UserModel mockUserModel = Mockito.mock(UserModel.class);
-		final UserService spyUserService = Mockito.spy(userService);
-		Mockito.when(spyUserService.getCurrentUser()).thenReturn(mockUserModel);
-		b2bUnitFacade.setUserService(spyUserService);
-		try
-		{
-			b2bUnitFacade.getParentUnitNode();
-			Assert.fail("Method B2BUnitFacade::getParentUnitNode should throw a ClassMistmatchException when current customer " +
-					"is non B2B.");
-		}
-		catch (final ClassMismatchException e)
-		{
-			//ok
-		}
-		finally
-		{
-			b2bUnitFacade.setUserService(userService);
-		}
-	}
-
 	protected OrgUnitModel getUnitForUid(final String uid)
 	{
 		final OrgUnitModel unit = userService.getUserGroupForUID(uid, OrgUnitModel.class);
@@ -354,9 +314,17 @@ public class DefaultB2BUnitFacadeIntegrationTest extends AbstractCommerceOrgInte
 		return unit;
 	}
 
+	public void testGetParentUnit()
+	{
+		final B2BUnitData parentUnit = b2bUnitFacade.getParentUnit();
+		assertNotNull("Parent unit is null", parentUnit);
+		assertEquals("Unexpected parent unit returned", "DC", parentUnit.getUid());
+	}
+
 	@Override
 	protected String getTestDataPath()
 	{
 		return "/b2bcommercefacades/test/testOrganizations.csv";
 	}
+
 }

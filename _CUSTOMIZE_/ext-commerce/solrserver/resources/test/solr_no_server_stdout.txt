@@ -1,2 +1,0 @@
-
-No Solr nodes are running.

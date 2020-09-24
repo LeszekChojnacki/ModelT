@@ -1,3 +1,0 @@
-  (
-    $cart := CartRAO(total > new java.math.BigDecimal("100"))
-  )

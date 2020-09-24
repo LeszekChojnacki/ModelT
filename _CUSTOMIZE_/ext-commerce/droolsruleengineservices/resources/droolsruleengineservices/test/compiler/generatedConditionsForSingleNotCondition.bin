@@ -1,5 +1,0 @@
-  not (
-    exists (
-      $orderEntry := OrderEntryRAO(product == $product)
-    )
-  )

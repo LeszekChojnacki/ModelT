@@ -1,3 +1,0 @@
-  (
-    exists (WebsiteGroupRAO(id == "electronicsPromoGroup"))
-  )

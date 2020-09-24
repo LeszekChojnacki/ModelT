@@ -1,0 +1,11 @@
+#Ant properties
+#Wed Nov 21 17:10:17 UTC 2018
+builddate=20181121 1710
+description=customersupportbackoffice
+group.id=de.hybris.platform
+module.name=platform-module
+name=customersupportbackoffice
+releasedate=20180913 1839
+vendor=hybris
+version=18.11
+version.api=18.11.0

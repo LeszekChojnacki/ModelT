@@ -1,0 +1,11 @@
+#Ant properties
+#Mon Nov 05 13:42:53 UTC 2018
+builddate=20181105 1342
+description=sapdigitalpaymentbackoffice
+group.id=de.hybris.platform
+module.name=platform-module
+name=sapdigitalpaymentbackoffice
+releasedate=20181017 1832
+vendor=hybris
+version=18.11
+version.api=1811

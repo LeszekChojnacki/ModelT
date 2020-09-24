@@ -1,0 +1,11 @@
+#Ant properties
+#Wed Oct 31 15:55:40 UTC 2018
+builddate=20181031 1555
+description=ybackoffice
+group.id=de.hybris.platform
+module.name=platform-module
+name=ybackoffice
+releasedate=20181030 0434
+vendor=hybris
+version=18.11
+version.api=1811

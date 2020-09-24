@@ -1,0 +1,11 @@
+#Ant properties
+#Sat Nov 17 04:48:38 UTC 2018
+builddate=20181117 0448
+description=integrationbackoffice
+group.id=de.hybris.platform
+module.name=platform-module
+name=integrationbackoffice
+releasedate=20181115 1218
+vendor=hybris
+version=18.11
+version.api=1811

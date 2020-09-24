@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
+
+	<extension name="commercefacades"
+		abstractclassprefix="Generated"
+		classprefix="CommerceFacades"
+		usemaven="false">
+
+		<requires-extension name="commerceservices" />
+
+		<coremodule packageroot="de.hybris.platform.commercefacades"
+			manager="de.hybris.platform.jalo.extension.GenericManager"
+			generated="true" />
+
+	</extension>
+
+</extensioninfo>

@@ -1,0 +1,11 @@
+#Ant properties
+#Tue Nov 27 10:28:41 UTC 2018
+builddate=20181127 1028
+description=subscriptionbundleservices
+group.id=de.hybris.platform
+module.name=platform-module
+name=subscriptionbundleservices
+releasedate=20181009 0616
+vendor=hybris
+version=18.11
+version.api=18.11.0

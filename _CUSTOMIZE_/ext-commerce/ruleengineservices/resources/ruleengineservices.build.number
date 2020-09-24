@@ -1,0 +1,11 @@
+#Ant properties
+#Tue Nov 27 16:28:54 UTC 2018
+builddate=20181127 1628
+description=ruleengineservices
+group.id=de.hybris.platform
+module.name=platform-module
+name=ruleengineservices
+releasedate=20181115 1218
+vendor=hybris
+version=18.11
+version.api=1811

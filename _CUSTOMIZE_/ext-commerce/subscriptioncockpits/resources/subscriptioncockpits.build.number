@@ -1,0 +1,11 @@
+#Ant properties
+#Tue Nov 27 09:46:48 UTC 2018
+builddate=20181127 0946
+description=subscriptioncockpits
+group.id=de.hybris.platform
+module.name=platform-module
+name=subscriptioncockpits
+releasedate=20181004 0843
+vendor=hybris
+version=18.11
+version.api=18.11.0

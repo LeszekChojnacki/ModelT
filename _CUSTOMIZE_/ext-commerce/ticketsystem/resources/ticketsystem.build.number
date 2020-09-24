@@ -1,0 +1,11 @@
+#Ant properties
+#Wed Nov 21 17:10:23 UTC 2018
+builddate=20181121 1710
+description=ticketsystem
+group.id=de.hybris.platform
+module.name=platform-module
+name=ticketsystem
+releasedate=20180913 1839
+vendor=hybris
+version=18.11
+version.api=18.11.0

@@ -1,0 +1,11 @@
+#Ant properties
+#Fri Nov 16 14:45:46 UTC 2018
+builddate=20181116 1445
+description=wishlist
+group.id=de.hybris.platform
+module.name=platform-module
+name=wishlist
+releasedate=20181115 1218
+vendor=hybris
+version=18.11
+version.api=1811

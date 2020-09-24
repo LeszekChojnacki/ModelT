@@ -1,0 +1,11 @@
+#Ant properties
+#Mon Oct 29 15:28:05 UTC 2018
+builddate=20181029 1528
+description=permissionsfacades
+group.id=de.hybris.platform
+module.name=platform-module
+name=permissionsfacades
+releasedate=20181027 1836
+vendor=hybris
+version=18.11
+version.api=1811

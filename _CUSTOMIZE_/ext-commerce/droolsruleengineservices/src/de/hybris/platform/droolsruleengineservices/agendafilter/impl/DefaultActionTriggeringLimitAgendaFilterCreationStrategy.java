@@ -1,0 +1,32 @@
+/*
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SAP
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with SAP.
+ */
+package de.hybris.platform.droolsruleengineservices.agendafilter.impl;
+
+import de.hybris.platform.droolsruleengineservices.agendafilter.AgendaFilterCreationStrategy;
+import de.hybris.platform.ruleengine.model.AbstractRuleEngineContextModel;
+
+import org.kie.api.runtime.rule.AgendaFilter;
+
+
+/**
+ * @deprecated since 18.08 (not used anymore)
+ */
+@Deprecated
+public class DefaultActionTriggeringLimitAgendaFilterCreationStrategy implements AgendaFilterCreationStrategy
+{
+
+	@Override
+	public AgendaFilter createAgendaFilter(final AbstractRuleEngineContextModel context)
+	{
+		return new ActionTriggeringLimitAgendaFilter();
+	}
+
+}

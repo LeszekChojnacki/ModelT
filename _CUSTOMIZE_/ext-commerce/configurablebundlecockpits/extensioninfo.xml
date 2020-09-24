@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+ [y] hybris Platform
+ 
+ Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+ 
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
+
+	<extension name="configurablebundlecockpits"
+	           abstractclassprefix="Generated"
+	           classprefix="ConfigurableBundleCockpits" >
+
+		<!-- you should add all required extensions to this list -->
+		<requires-extension name="admincockpit"/>
+		<requires-extension name="productcockpit"/>
+		<requires-extension name="configurablebundlefacades"/>
+			
+		<coremodule packageroot="de.hybris.platform.configurablebundlecockpits"
+		            manager="de.hybris.platform.jalo.extension.GenericManager"
+		            generated="true"/>
+
+		<meta key="deprecated" value="true"/>
+
+	</extension>
+
+</extensioninfo>
